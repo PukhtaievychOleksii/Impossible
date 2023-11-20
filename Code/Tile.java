@@ -1,3 +1,5 @@
+package Code;
+
 enum Tile {
     STARTING_PLAYER,
     RED,
