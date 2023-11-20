@@ -1,3 +1,5 @@
+package Code;
+
 public final class Points {
     public static Points sum(final Iterable<Points> pts) {
         int sum = 0;

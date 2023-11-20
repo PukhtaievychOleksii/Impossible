@@ -1,4 +1,6 @@
-enum Tile {
+package Code;
+
+public enum Tile {
     STARTING_PLAYER,
     RED,
     GREEN,
