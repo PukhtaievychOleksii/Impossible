@@ -1,5 +1,9 @@
 package Code;
+<<<<<<< HEAD
 
+=======
+import Code.Interfaces.*;
+>>>>>>> 9402e9c84a2d750994aa0b13936a55e67ecad2ef
 import java.util.ArrayList;
 import java.util.Collection;
 
