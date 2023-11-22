@@ -55,7 +55,7 @@ public class FinalPointsCalculationComposite implements Component {
         }
        return false;
     }
-    
+
     public int calculateColorPoints(ArrayList<ArrayList<Tile>> records) {
         int colorPoints = 0;
         for (ArrayList<Tile> row : records){
