@@ -13,6 +13,10 @@ public class WallLine {
     public Optional<Tile> getTiles(){
         return Optional.empty();
     }
+//    public ArrayList<Tile> getTiles(){
+//        return null;
+//    }
+
 
     public Points putTile(Tile tile){
         return new Points(0);
