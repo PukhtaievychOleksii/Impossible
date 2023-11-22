@@ -1,12 +1,18 @@
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+package Code.Tests;
+
+import Code.Floor;
+import Code.Interfaces.UsedTilesGiveInterface;
+import Code.Points;
+import Code.Tile;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 class FakeUsedTiles implements UsedTilesGiveInterface {
     public ArrayList<Tile> tiles;
