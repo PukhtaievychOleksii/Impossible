@@ -1,6 +1,7 @@
 package Code;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class PatternLine {
     private int capacity;
@@ -12,26 +13,15 @@ public class PatternLine {
         this.capacity = capacity;
         this.floor = floor;
         this.wallLine = relatedWallLine;
-
+        resetLine();
     }
 
     private void resetLine(){
-        ArrayList<Tile> newLine = new ArrayList<>();
-        for(int i = 0; i < capacity; i++){
-            newLine.add(null);
-        }
-        presentTiles = newLine;
+        presentTiles = new ArrayList<>();
     }
 
     private boolean isLineFull(){
-        boolean ans = true;
-        for(Tile tile : presentTiles){
-            if(tile == null) {
-                ans = false;
-                break;
-            }
-        }
-        return ans;
+        return presentTiles.size() == capacity;
     }
 
     private boolean areTilesOfTheSameType(ArrayList<Tile> tiles){
@@ -41,20 +31,13 @@ public class PatternLine {
         }
         return true;
     }
+
     public void put(ArrayList<Tile> tiles){
         Tile instance = tiles.get(0);
         if(!areTilesOfTheSameType(tiles) || !wallLine.canPutTile(instance)) return;
-
-        int startIndex = 0;
-        for(Tile tile: presentTiles) {
-            if(tile != null) startIndex++;
-        }
-        for(int i = startIndex; i < tiles.size(); i++){
-            if(i < presentTiles.size()){
-                presentTiles.set(i, tiles.get(i));
-            } else {
-                floor.put(tiles.subList(i, i + 1));
-            }
+        for(Tile tile : tiles){
+            if(presentTiles.size() < capacity) presentTiles.add(tile);
+            else floor.put(Collections.singleton(tile));
         }
     }
 
