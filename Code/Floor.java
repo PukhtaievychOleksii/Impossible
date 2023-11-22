@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public final class Floor {
-    private final UsedTilesGiveInterface usedTiles;
+    private final ArrayList<Tile> usedTiles;
     private final ArrayList<Points> pointPattern;
     private ArrayList<Tile> tiles;
 
-    public Floor(final UsedTilesGiveInterface usedTiles, final ArrayList<Points> pointPattern) {
+    public Floor(final ArrayList<Tile> usedTiles, final ArrayList<Points> pointPattern) {
         this.usedTiles = usedTiles;
         this.pointPattern = pointPattern;
         tiles = new ArrayList<Tile>();
@@ -35,7 +35,7 @@ public final class Floor {
                             : pointPattern.get(pointPattern.size() - 1))
                             .getValue();
         }
-        usedTiles.give(tiles);
+        usedTiles.addAll(tiles);
         tiles = new ArrayList<Tile>();
         return new Points(sum);
     }

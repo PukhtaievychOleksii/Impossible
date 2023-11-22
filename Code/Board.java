@@ -13,27 +13,36 @@ public class Board {
     private ArrayList<PatternLine> patternLines;
     private FinishRoundResult roundResult;
     private Floor floorLine;
-    private int[] floorLineScores;
+    private ArrayList<Points> floorLineScores;
 
     public Board() {
-
         finalWall = new ArrayList<>();
         wallLines = new ArrayList<>();
         patternLines = new ArrayList<>();
-//        floorLine = new Floor();
+
+        fillFlorLineScores();
+        floorLine = new Floor(new ArrayList<>(), floorLineScores);
 
         for (int i = 0; i < 5; i++) {
+            //TODO: use constructor
             wallLines.add(new WallLine());
-            patternLines.add(new PatternLine(i + 1));
+            patternLines.add(new PatternLine(i + 1, floorLine, wallLines.get(i)));
         }
 
         points = new Points(0);
     }
 
-    public void put(int destinationIdx, ArrayList<Tile> tyles) {
-        if (tyles.size() > 0) {
-            patternLines.get(destinationIdx).put(tyles);
+    private void fillFlorLineScores() {
+        int count = -1;
+        for (int i = 0; i < 7; i++) {
+            if (i == 2) count = -2;
+            if (i == 5) count = -3;
+            floorLineScores.add(i, new Points(count));
         }
+    }
+
+    public void put(int destinationIdx, ArrayList<Tile> tyles) {
+        patternLines.get(destinationIdx).put(tyles);
     }
 
     public FinishRoundResult finishRound() {
@@ -50,15 +59,15 @@ public class Board {
         for (int row = 0; row < 5; row++) {
             complete = true;
             for (int col = 0; col < 5; col++) {
-                    for (Tile tyle: wallLines.get(row).getTiles()) {
-                        if(tyle == null){
-                            complete = false;
-                            break;
-                        }
-                    }
-                    complete = false;
-                    break;
-                }
+//                for (Tile tyle : wallLines.get(row).getTiles()) {
+//                    if (tyle == null) {
+//                        complete = false;
+//                        break;
+//                    }
+//                }
+                complete = false;
+                break;
+
             }
             if (complete) return true;
         }

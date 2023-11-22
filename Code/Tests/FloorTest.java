@@ -1,7 +1,6 @@
 package Code.Tests;
 
 import Code.Floor;
-import Code.Interfaces.UsedTilesGiveInterface;
 import Code.Points;
 import Code.Tile;
 import org.junit.Before;
@@ -14,7 +13,7 @@ import java.util.Collection;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
-class FakeUsedTiles implements UsedTilesGiveInterface {
+class FakeUsedTiles {
     public ArrayList<Tile> tiles;
 
     public FakeUsedTiles() {
@@ -32,12 +31,12 @@ public class FloorTest {
 
     @Before
     public void setUp() {
-        usedTiles = new FakeUsedTiles();
+        //usedTiles = new FakeUsedTiles();
         ArrayList<Points> pointPattern = new ArrayList<Points>();
         pointPattern.add(new Points(1));
         pointPattern.add(new Points(2));
         pointPattern.add(new Points(2));
-        floor = new Floor(usedTiles, pointPattern);
+        floor = new Floor(new ArrayList<>(), pointPattern);
     }
 
     @Test
