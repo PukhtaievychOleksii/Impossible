@@ -30,6 +30,10 @@ public class WallLine {
     public ArrayList<Optional<Tile>> getTiles(){
         return presentTiles;
     }
+//    public ArrayList<Tile> getTiles(){
+//        return null;
+//    }
+
 
     public Points putTile(Tile tile){
         //TODO: Points calculation
