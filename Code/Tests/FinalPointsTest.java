@@ -208,7 +208,7 @@ public class FinalPointsTest {
         records.add(row2);
         records.add(row3);
         records.add(row4);
-        //records.add(row5);
+        records.add(row5);
         FinalPointsCalculationComposite comp = new FinalPointsCalculationComposite();
         int n = comp.calculateVerticalColumnPoints(records);
         assertEquals("Two rows should give 14 points", 14, n);
@@ -310,8 +310,3 @@ public class FinalPointsTest {
         int result = finalPoints.calculateColorPoints(records);
         assertEquals(5 * 10, result);
     }
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> c654542ac3765ee780219f324b43a4a8ae78f9de
