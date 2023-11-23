@@ -2,8 +2,8 @@ package Code;
 
 import java.util.ArrayList;
 
-import static Code.FinishRoundResult.*;
-import static Code.Tile.*;
+import static Code.FinishRoundResult.GAME_FINISHED;
+import static Code.FinishRoundResult.NORMAL;
 
 public class Board {
 
@@ -25,7 +25,7 @@ public class Board {
 
         for (int i = 0; i < 5; i++) {
             //TODO: use constructor
-            wallLines.add(new WallLine());
+            //wallLines.add(new WallLine());
             patternLines.add(new PatternLine(i + 1, floorLine, wallLines.get(i)));
         }
 
