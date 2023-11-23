@@ -1,7 +1,6 @@
 package Code.Tests;
 
 import Code.Floor;
-import Code.Interfaces.UsedTilesGiveInterface;
 import Code.Points;
 import Code.Tile;
 import org.junit.Before;
@@ -9,30 +8,17 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
-class FakeUsedTiles implements UsedTilesGiveInterface {
-    public ArrayList<Tile> tiles;
-
-    public FakeUsedTiles() {
-        tiles = new ArrayList<Tile>();
-    }
-
-    public void give(Collection<Tile> t) {
-        tiles.addAll(t);
-    }
-}
-
 public class FloorTest {
-    private FakeUsedTiles usedTiles;
+    private ArrayList<Tile> usedTiles;
     private Floor floor;
 
     @Before
     public void setUp() {
-        usedTiles = new FakeUsedTiles();
+        usedTiles = new ArrayList<Tile>();
         ArrayList<Points> pointPattern = new ArrayList<Points>();
         pointPattern.add(new Points(1));
         pointPattern.add(new Points(2));
@@ -57,7 +43,7 @@ public class FloorTest {
                 7,
                 points.getValue());
         assertArrayEquals(
-                "Used tiles should get the tiles", tiles.toArray(), usedTiles.tiles.toArray());
+                "Used tiles should get the tiles", tiles.toArray(), usedTiles.toArray());
 
         floor.put(Arrays.asList(Tile.RED));
         floor.put(Arrays.asList(Tile.GREEN));
@@ -72,7 +58,8 @@ public class FloorTest {
         tiles.add(Tile.RED);
         tiles.add(Tile.GREEN);
         assertArrayEquals(
-                "Used tiles should get the tiles", tiles.toArray(), usedTiles.tiles.toArray());
+                "Used tiles should get the tiles", tiles.toArray(), usedTiles.toArray());
     }
+
 
 }

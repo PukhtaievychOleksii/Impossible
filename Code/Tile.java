@@ -1,5 +1,7 @@
 package Code;
 
+import java.util.Random;
+
 public enum Tile {
     STARTING_PLAYER,
     RED,
@@ -26,5 +28,12 @@ public enum Tile {
             default:
                 return null;
         }
+    }
+
+    private static final Random rand = new Random();
+
+    public static Tile randomTile()  {
+        Tile[] tiles = {Tile.RED, Tile.GREEN,Tile.BLUE, Tile.BLACK, Tile.YELLOW};
+        return tiles[rand.nextInt(tiles.length)];
     }
 }
