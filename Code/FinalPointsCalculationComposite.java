@@ -8,7 +8,7 @@ public class FinalPointsCalculationComposite implements Component {
     @Override
     public Points getPoints(ArrayList<ArrayList<Tile>> records) {
         int totalPoints = 0;
-
+        /*не считает colorpoints и verticalcolumnpoints*/
         totalPoints += calculateColorPoints(records);
         totalPoints += calculateHorizontalRowPoints(records);
         totalPoints += calculateVerticalColumnPoints(records);
@@ -28,14 +28,17 @@ public class FinalPointsCalculationComposite implements Component {
     }
 
     public boolean isRowComplete(ArrayList<Tile> row) {
+        /*Проверяй есть ли 5 Tiles в ряду, а не является ли какой-то null*/
         for (Tile tile : row) {
             if (tile == null) return false;
         }
+
         return true;
     }
 
 
     public int calculateVerticalColumnPoints(ArrayList<ArrayList<Tile>> records) {
+        /*INDEXOFBOUNDS EXCEPTION  для row.get(col), так как в row может быть на одном ряду 5 элементов, а на другом 3*/
         int verticalPoints = 0;
         for( int col = 0; col < records.get(0).size(); col++){
             ArrayList<Tile> column = new ArrayList<>();
@@ -50,6 +53,7 @@ public class FinalPointsCalculationComposite implements Component {
     }
 
     public boolean isColumnComplete(ArrayList<Tile> column){
+        /*Проверяй есть ли 5 Tiles по вертикале, а не является ли какой-то null*/
         for(Tile tile : column){
             if (tile == null) return false;
         }
@@ -72,6 +76,7 @@ public class FinalPointsCalculationComposite implements Component {
             countColor.put(FirstLetterColor, countColor.getOrDefault(FirstLetterColor, 0) + 1);
 
             if (countColor.get(FirstLetterColor) == 5){
+                //никогда не попадет в этот иф
                 colorPoints += 10;
             }
         }

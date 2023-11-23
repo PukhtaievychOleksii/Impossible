@@ -4,7 +4,7 @@ import Code.Interfaces.GameInterface;
 
 import java.util.ArrayList;
 
-public class Game implements GameInterface {
+public class  Game implements GameInterface {
     private int numOfPlayers;
     private int curPlayer;
     private Bag bag;
