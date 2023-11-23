@@ -3,7 +3,12 @@ package Code;
 import java.util.ArrayList;
 import java.util.Optional;
 
+<<<<<<< HEAD
 import static Code.FinishRoundResult.*;
+=======
+import static Code.FinishRoundResult.GAME_FINISHED;
+import static Code.FinishRoundResult.NORMAL;
+>>>>>>> 517750c0afb0d0bc21bf0514374f309aaf3744e0
 
 public class Board {
 
@@ -25,9 +30,13 @@ public class Board {
 
         for (int i = 0; i < 5; i++) {
             //TODO: use constructor
+<<<<<<< HEAD
             if(i == 0) {
                 wallLines.add(new WallLine());
             }
+=======
+            //wallLines.add(new WallLine());
+>>>>>>> 517750c0afb0d0bc21bf0514374f309aaf3744e0
             patternLines.add(new PatternLine(i + 1, floorLine, wallLines.get(i)));
         }
 
