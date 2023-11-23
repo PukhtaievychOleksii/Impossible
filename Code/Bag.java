@@ -1,23 +1,31 @@
 package Code;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 
 import static java.time.chrono.JapaneseEra.values;
 
 public class Bag {
-    private ArrayList<Tile> bag;
+    private Deque<Tile> bag;
     public Bag(){
-        this.bag = new ArrayList<>();
+        this.bag = new ArrayDeque<>();
         for(Tile color : Tile.values()){
             for (int i = 0; i < 20; i++) {
-                bag.add(i, color);
+                bag.push(color);
             }
         }
-        Collections.shuffle(bag);
+        Collections.shuffle((List<?>) bag);
     }
+<<<<<<< HEAD
     public ArrayList<Tile> take(int count){
         return new ArrayList<>();
+=======
+    private ArrayList<Tile> take(int count){
+        ArrayList<Tile> taken = new ArrayList<>();
+        for(int i = 0; i < count; i++){
+            taken.add(bag.pop());
+        }
+        return taken;
+>>>>>>> c654542ac3765ee780219f324b43a4a8ae78f9de
     }
     public String state(){
         return "str";

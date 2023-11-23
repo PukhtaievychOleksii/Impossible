@@ -4,7 +4,7 @@ import Code.Interfaces.GameInterface;
 
 import java.util.ArrayList;
 
-public class Game implements GameInterface {
+public class  Game implements GameInterface {
     private int numOfPlayers;
     private int curPlayer;
     private Bag bag;
@@ -38,6 +38,9 @@ public class Game implements GameInterface {
             playerBoards.add(i, new Board());
         }
         int numOfFactories = factoryCount[numOfPlayers];
+        for(int i = 0; i < numOfFactories; i++){
+            factories.add(new Factory());
+        }
 
 
 

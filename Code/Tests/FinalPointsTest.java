@@ -140,4 +140,8 @@ public class FinalPointsTest {
         int result = finalPoints.calculateColorPoints(records);
         assertEquals(5 * 10, result);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c654542ac3765ee780219f324b43a4a8ae78f9de

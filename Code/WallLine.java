@@ -12,9 +12,6 @@ public class WallLine {
     public WallLine(ArrayList<Tile> tileTypesSequence){
         this.tileTypesSequence = tileTypesSequence;
         presentTiles = new ArrayList<>();
-        for(int i = 0; i < tileTypesSequence.size(); i++){
-            presentTiles.add(Optional.empty());
-        }
     }
 
     public void setUpWall(WallLine upWall){
