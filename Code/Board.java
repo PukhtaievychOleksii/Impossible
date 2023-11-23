@@ -28,9 +28,20 @@ public class Board {
         floorLine = new Floor(new ArrayList<>(), floorLineScores);
 
         for (int i = 0; i < 5; i++) {
-//            wallLines.add(new WallLine(tileTypesSequenceWall.get(i)));
+            wallLines.add(new WallLine(tileTypesSequenceWall.get(i)));
             patternLines.add(new PatternLine(i + 1, floorLine, wallLines.get(i)));
         }
+        setNeighbours();
+
+    }
+
+    private void setNeighbours(){
+        wallLines.get(0).setDownWall(wallLines.get(1));
+        for(int i = 1; i < 4; i++){
+            wallLines.get(i).setUpWall(wallLines.get(i - 1));
+            wallLines.get(i).setDownWall(wallLines.get(i + 1));
+        }
+        wallLines.get(4).setUpWall(wallLines.get(3));
     }
 
     private void fillFlorLineScores() {
@@ -59,11 +70,16 @@ public class Board {
 
     public void put(int destinationIdx, ArrayList<Tile> tyles) {
         patternLines.get(destinationIdx).put(tyles);
-        points = new Points(points.getValue() + patternLines.get(destinationIdx).finishRound().getValue());
-//        finishRound();
     }
 
     public FinishRoundResult finishRound() {
+        int finishRoundSum = 0;
+        for (int i = 0; i < 5; i++){
+            finishRoundSum += patternLines.get(i).finishRound().getValue();
+        }
+        points = new Points(points.getValue() + finishRoundSum - floorLine.finishRound().getValue());
+
+
         if (hasCompleteRow()) {
             roundResult = GAME_FINISHED;
             endGame();
@@ -79,13 +95,11 @@ public class Board {
             complete = true;
             for (int col = 0; col < 5; col++) {
                 for (Optional<Tile> oTyle : wallLines.get(row).getTiles()) {
-//                    if (oTyle.get() == null) {
-//                        complete = false;
-//                        break;
-//                    }
+                    if (oTyle.isEmpty()) {
+                        complete = false;
+                        break;
+                    }
                 }
-                complete = false;
-                break;
             }
             if (complete) return true;
         }
@@ -94,7 +108,7 @@ public class Board {
 
     public void endGame() {
         FinalPointsCalculationComposite bonus = new FinalPointsCalculationComposite();
-        points = new Points(points.getValue() + bonus.getPoints(tileTypesSequenceWall).getValue());
+        points = new Points(points.getValue() + bonus.getPoints(wallLines).getValue());
     }
 
     public String state() {
