@@ -11,9 +11,9 @@ public class Board {
     private ArrayList<ArrayList<Tile>> tileTypesSequenceWall;
     private ArrayList<WallLine> wallLines;
     private ArrayList<PatternLine> patternLines;
-    private FinishRoundResult roundResult;
     private Floor floorLine;
     private ArrayList<Points> floorLineScores;
+    private GameFinished gameResult;
 
     public Board() {
         points = new Points(0);
@@ -72,6 +72,14 @@ public class Board {
         patternLines.get(destinationIdx).put(tyles);
     }
 
+    private ArrayList<ArrayList<Optional<Tile>>> wallToArrayList(){
+        ArrayList<ArrayList<Optional<Tile>>> wall = new ArrayList<>();
+        for(WallLine wallLine : wallLines){
+            wall.add(wallLine.getTiles());
+        }
+        return wall;
+    }
+
     public FinishRoundResult finishRound() {
         int finishRoundSum = 0;
         for (int i = 0; i < 5; i++){
@@ -80,43 +88,18 @@ public class Board {
         points = new Points(points.getValue() + finishRoundSum - floorLine.finishRound().getValue());
 
 
-        if (hasCompleteRow()) {
-            roundResult = GAME_FINISHED;
-            endGame();
-        } else {
-            roundResult = NORMAL;
+        if (gameResult.gameFinished(wallToArrayList()) == GAME_FINISHED ) {
+            return GAME_FINISHED;
         }
-        return roundResult;
+        return NORMAL;
     }
 
-    private boolean hasCompleteRow() {
-        boolean complete;
-        for (int row = 0; row < 5; row++) {
-            complete = true;
-            for (int col = 0; col < 5; col++) {
-                for (Optional<Tile> oTyle : wallLines.get(row).getTiles()) {
-                    if (oTyle.isEmpty()) {
-                        complete = false;
-                        break;
-                    }
-                }
-            }
-            if (complete) return true;
-        }
-        return false;
-    }
+
 
     public void endGame() {
         FinalPointsCalculationComposite bonus = new FinalPointsCalculationComposite();
-<<<<<<< HEAD
-        points = new Points(points.getValue() + bonus.getPoints(wallLines).getValue());
-=======
-<<<<<<< HEAD
-       // points = new Points(points.getValue() + bonus.getPoints(finalWall).getValue());
-=======
-        //points = new Points(points.getValue() + bonus.getPoints(finalWall).getValue());
->>>>>>> 9f7e9144890f15609cb21241fda8354537f32d4c
->>>>>>> b14be8094aea7d7f92c0184e914b921410982845
+        points = new Points(points.getValue() + bonus.getPoints(wallToArrayList()).getValue());
+//      No test!!! Will be Changed in the future
     }
 
     public String state() {
