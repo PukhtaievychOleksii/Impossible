@@ -3,12 +3,7 @@ package Code;
 import java.util.ArrayList;
 import java.util.Optional;
 
-<<<<<<< HEAD
 import static Code.FinishRoundResult.*;
-=======
-import static Code.FinishRoundResult.GAME_FINISHED;
-import static Code.FinishRoundResult.NORMAL;
->>>>>>> 517750c0afb0d0bc21bf0514374f309aaf3744e0
 
 public class Board {
 
@@ -21,7 +16,11 @@ public class Board {
     private ArrayList<Points> floorLineScores;
 
     public Board() {
+        points = new Points(0);
+
         tileTypesSequenceWall = new ArrayList<>();
+        fillTypesSequenceWall();
+
         wallLines = new ArrayList<>();
         patternLines = new ArrayList<>();
 
@@ -29,18 +28,9 @@ public class Board {
         floorLine = new Floor(new ArrayList<>(), floorLineScores);
 
         for (int i = 0; i < 5; i++) {
-            //TODO: use constructor
-<<<<<<< HEAD
-            if(i == 0) {
-                wallLines.add(new WallLine());
-            }
-=======
-            //wallLines.add(new WallLine());
->>>>>>> 517750c0afb0d0bc21bf0514374f309aaf3744e0
+//            wallLines.add(new WallLine(tileTypesSequenceWall.get(i)));
             patternLines.add(new PatternLine(i + 1, floorLine, wallLines.get(i)));
         }
-
-        points = new Points(0);
     }
 
     private void fillFlorLineScores() {
@@ -52,33 +42,50 @@ public class Board {
         }
     }
 
+    private void fillTypesSequenceWall() {
+        for (int i = 0; i < 5; i++) {
+            tileTypesSequenceWall.add(i, new ArrayList<Tile>());
+            for (int j = 0; j < 5; j++) {
+                Tile wallTyle = null;
+                if (i == j) wallTyle = Tile.BLUE;
+                else if ((i + 1) % 5 == j) wallTyle = Tile.YELLOW;
+                else if ((i + 2) % 5 == j) wallTyle = Tile.RED;
+                else if ((i + 3) % 5 == j) wallTyle = Tile.BLACK;
+                else if ((i + 4) % 5 == j) wallTyle = Tile.GREEN;
+                tileTypesSequenceWall.get(i).add(j, wallTyle);
+            }
+        }
+    }
+
     public void put(int destinationIdx, ArrayList<Tile> tyles) {
         patternLines.get(destinationIdx).put(tyles);
+        points = new Points(points.getValue() + patternLines.get(destinationIdx).finishRound().getValue());
+//        finishRound();
     }
 
     public FinishRoundResult finishRound() {
         if (hasCompleteRow()) {
             roundResult = GAME_FINISHED;
             endGame();
-        } else roundResult = NORMAL;
-
+        } else {
+            roundResult = NORMAL;
+        }
         return roundResult;
     }
 
-    public boolean hasCompleteRow() {
+    private boolean hasCompleteRow() {
         boolean complete;
         for (int row = 0; row < 5; row++) {
             complete = true;
             for (int col = 0; col < 5; col++) {
                 for (Optional<Tile> oTyle : wallLines.get(row).getTiles()) {
-                    if (oTyle.get() == null) {
-                        complete = false;
-                        break;
-                    }
+//                    if (oTyle.get() == null) {
+//                        complete = false;
+//                        break;
+//                    }
                 }
                 complete = false;
                 break;
-
             }
             if (complete) return true;
         }
