@@ -38,6 +38,9 @@ public class Game implements GameInterface {
             playerBoards.add(i, new Board());
         }
         int numOfFactories = factoryCount[numOfPlayers];
+        for(int i = 0; i < numOfFactories; i++){
+            factories.add(new Factory());
+        }
 
 
 
