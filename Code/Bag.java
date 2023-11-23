@@ -16,7 +16,7 @@ public class Bag {
         }
         Collections.shuffle(bag);
     }
-    private ArrayList<Tile> take(int count){
+    public ArrayList<Tile> take(int count){
         return new ArrayList<>();
     }
     public String state(){

@@ -9,11 +9,20 @@ public class WallLine {
     private WallLine upWall;
     private WallLine downWall;
 
-    public WallLine(ArrayList<Tile> tileTypesSequence, WallLine upWall, WallLine downWall){
+    public WallLine(ArrayList<Tile> tileTypesSequence){
         this.tileTypesSequence = tileTypesSequence;
-        this.upWall = upWall;
-        this.downWall = downWall;
         presentTiles = new ArrayList<>();
+        for(int i = 0; i < tileTypesSequence.size(); i++){
+            presentTiles.add(Optional.empty());
+        }
+    }
+
+    public void setUpWall(WallLine upWall){
+        this.upWall = upWall;
+    }
+
+    public void setDownWall(WallLine downWall){
+        this.downWall = downWall;
     }
 
     public boolean canPutTile(Tile tile){
