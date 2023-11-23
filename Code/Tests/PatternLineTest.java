@@ -19,7 +19,7 @@ public class PatternLineTest {
         pointPattern.add(new Points(2));
         Floor floor = new Floor(usedTiles, pointPattern);
         ArrayList<Tile> tiles = new ArrayList<>(Arrays.asList(Tile.RED, Tile.BLACK, Tile.BLUE, Tile.GREEN, Tile.YELLOW));
-        WallLine wallLine = new WallLine(tiles, null, null);
+        WallLine wallLine = new WallLine(tiles);
         PatternLine patternLine = new PatternLine(5, floor, wallLine);
         ArrayList<Tile> tiles1 = new ArrayList<>(Arrays.asList(Tile.RED,Tile.RED, Tile.RED));
         patternLine.put(tiles1);
