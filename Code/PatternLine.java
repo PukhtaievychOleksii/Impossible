@@ -16,11 +16,11 @@ public class PatternLine {
         resetLine();
     }
 
-    private void resetLine(){
+    public void resetLine(){
         presentTiles = new ArrayList<>();
     }
 
-    private boolean isLineFull(){
+    public boolean isLineFull(){
         return presentTiles.size() == capacity;
     }
 
