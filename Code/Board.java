@@ -1,14 +1,14 @@
 package Code;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import static Code.FinishRoundResult.*;
-import static Code.Tile.*;
 
 public class Board {
 
     private Points points;
-    private ArrayList<ArrayList<Tile>> finalWall;
+    private ArrayList<ArrayList<Tile>> tileTypesSequenceWall;
     private ArrayList<WallLine> wallLines;
     private ArrayList<PatternLine> patternLines;
     private FinishRoundResult roundResult;
@@ -16,7 +16,7 @@ public class Board {
     private ArrayList<Points> floorLineScores;
 
     public Board() {
-        finalWall = new ArrayList<>();
+        tileTypesSequenceWall = new ArrayList<>();
         wallLines = new ArrayList<>();
         patternLines = new ArrayList<>();
 
@@ -25,7 +25,9 @@ public class Board {
 
         for (int i = 0; i < 5; i++) {
             //TODO: use constructor
-            wallLines.add(new WallLine());
+            if(i == 0) {
+                wallLines.add(new WallLine());
+            }
             patternLines.add(new PatternLine(i + 1, floorLine, wallLines.get(i)));
         }
 
@@ -59,12 +61,12 @@ public class Board {
         for (int row = 0; row < 5; row++) {
             complete = true;
             for (int col = 0; col < 5; col++) {
-//                for (Tile tyle : wallLines.get(row).getTiles()) {
-//                    if (tyle == null) {
-//                        complete = false;
-//                        break;
-//                    }
-//                }
+                for (Optional<Tile> oTyle : wallLines.get(row).getTiles()) {
+                    if (oTyle.get() == null) {
+                        complete = false;
+                        break;
+                    }
+                }
                 complete = false;
                 break;
 
@@ -76,7 +78,7 @@ public class Board {
 
     public void endGame() {
         FinalPointsCalculationComposite bonus = new FinalPointsCalculationComposite();
-        points = new Points(points.getValue() + bonus.getPoints(finalWall).getValue());
+        points = new Points(points.getValue() + bonus.getPoints(tileTypesSequenceWall).getValue());
     }
 
     public String state() {
