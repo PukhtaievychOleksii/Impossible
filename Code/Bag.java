@@ -13,20 +13,23 @@ public class Bag {
                 bag.push(color);
             }
         }
-        Collections.shuffle((List<?>) bag);
+        List<Tile> bagList = new ArrayList<>(bag);
+        Collections.shuffle(bagList);
+        bag = new ArrayDeque<>(bagList);
     }
-<<<<<<< HEAD
+    /*На 16 строке ты пытаешься перемешать элементы ArrayDeque
+     предполагая что оно List, вызывается ошибка ClassCastException.
+     Сначала создай лист на основе декью а потом можно будет мешать. я пределала
+     проверь 16-18 строчку*/
     public ArrayList<Tile> take(int count){
-        return new ArrayList<>();
-=======
-    private ArrayList<Tile> take(int count){
         ArrayList<Tile> taken = new ArrayList<>();
         for(int i = 0; i < count; i++){
             taken.add(bag.pop());
         }
         return taken;
->>>>>>> c654542ac3765ee780219f324b43a4a8ae78f9de
+
     }
+
     public String state(){
         return "str";
     }
