@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //package Code.Tests;
 //
 //import Code.Bag;
@@ -31,7 +30,6 @@
 //
 //}
 //
-=======
 package Code.Tests;
 
 import Code.Bag;
