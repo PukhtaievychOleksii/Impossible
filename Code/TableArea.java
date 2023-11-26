@@ -8,7 +8,6 @@ public class TableArea {
         return true;
     }
     public void  startNewRound(){
-
     }
     public String state(){
         return "str";

@@ -7,29 +7,29 @@ import static Code.FinishRoundResult.*;
 
 public class Board {
 
-    private Points points;
+    public Points points;
     private ArrayList<ArrayList<Tile>> tileTypesSequenceWall;
     private ArrayList<WallLine> wallLines;
     private ArrayList<PatternLine> patternLines;
-    private Floor floorLine;
+    private Floor floor;
     private ArrayList<Points> floorLineScores;
     private GameFinished gameResult;
 
     public Board() {
         points = new Points(0);
 
-        tileTypesSequenceWall = new ArrayList<>();
+        this.tileTypesSequenceWall = new ArrayList<>();
         fillTypesSequenceWall();
 
-        wallLines = new ArrayList<>();
-        patternLines = new ArrayList<>();
+        this.wallLines = new ArrayList<>();
+        this.patternLines = new ArrayList<>();
 
         fillFlorLineScores();
-        floorLine = new Floor(new ArrayList<>(), floorLineScores);
+        this.floor = new Floor(new ArrayList<>(), floorLineScores);
 
         for (int i = 0; i < 5; i++) {
             wallLines.add(new WallLine(tileTypesSequenceWall.get(i)));
-            patternLines.add(new PatternLine(i + 1, floorLine, wallLines.get(i)));
+            patternLines.add(new PatternLine(i + 1, floor, wallLines.get(i)));
         }
         setNeighbours();
 
@@ -85,7 +85,7 @@ public class Board {
         for (int i = 0; i < 5; i++){
             finishRoundSum += patternLines.get(i).finishRound().getValue();
         }
-        points = new Points(points.getValue() + finishRoundSum - floorLine.finishRound().getValue());
+        points = new Points(points.getValue() + finishRoundSum - floor.finishRound().getValue());
 
 
         if (gameResult.gameFinished(wallToArrayList()) == GAME_FINISHED ) {
@@ -103,7 +103,14 @@ public class Board {
     }
 
     public String state() {
-        return null;
+        String score = "Score: " + points.toString() + "\n";
+        String pLines = "Pattern lines:\n";
+        String wLines = "Wall lines:\n";
+        for (int i = 0; i < 5; i++) {
+            pLines += patternLines.get(i).state() + "\n";
+            wLines += wallLines.get(i).state() + "\n";
+        }
+        return score + pLines + wLines ;
     }
 
 }
