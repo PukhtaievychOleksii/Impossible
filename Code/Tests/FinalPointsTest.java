@@ -14,7 +14,12 @@ import static org.junit.Assert.assertEquals;
 
 public class FinalPointsTest {
     @Test
+<<<<<<< HEAD
     public void fullMosaicTest() {
+=======
+
+    public void fullMosaicTest(){
+>>>>>>> 92a18c7af19c401dd156286b18608519446b2c4b
         ArrayList<ArrayList<Optional<Tile>>> records = new ArrayList<>();
         ArrayList<Optional<Tile>> row1 = new ArrayList<>(
                 Arrays.asList(
@@ -200,6 +205,10 @@ public class FinalPointsTest {
                         Optional.of(Tile.YELLOW)
                 )
         );
+<<<<<<< HEAD
+=======
+
+>>>>>>> 92a18c7af19c401dd156286b18608519446b2c4b
        ArrayList<Optional<Tile>> row5 = new ArrayList<>(
                 Arrays.asList(
                         Optional.of(Tile.RED),
@@ -315,5 +324,9 @@ public class FinalPointsTest {
         int result = finalPoints.calculateColorPoints(records);
         assertEquals(5 * 10, result);
     }
+<<<<<<< HEAD
 }
+=======
+    }
+>>>>>>> 92a18c7af19c401dd156286b18608519446b2c4b
 

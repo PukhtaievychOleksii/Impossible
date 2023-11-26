@@ -1,35 +1,47 @@
 package Code;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
-import static Code.FinishRoundResult.GAME_FINISHED;
-import static Code.FinishRoundResult.NORMAL;
+import static Code.FinishRoundResult.*;
 
 public class Board {
 
-    private Points points;
-    private ArrayList<ArrayList<Tile>> finalWall;
+    public Points points;
+    private ArrayList<ArrayList<Tile>> tileTypesSequenceWall;
     private ArrayList<WallLine> wallLines;
     private ArrayList<PatternLine> patternLines;
-    private FinishRoundResult roundResult;
-    private Floor floorLine;
+    private Floor floor;
     private ArrayList<Points> floorLineScores;
+    private GameFinished gameResult;
 
     public Board() {
-        finalWall = new ArrayList<>();
-        wallLines = new ArrayList<>();
-        patternLines = new ArrayList<>();
+        points = new Points(0);
+
+        this.tileTypesSequenceWall = new ArrayList<>();
+        fillTypesSequenceWall();
+
+        this.wallLines = new ArrayList<>();
+        this.patternLines = new ArrayList<>();
 
         fillFlorLineScores();
-        floorLine = new Floor(new ArrayList<>(), floorLineScores);
+        this.floor = new Floor(new ArrayList<>(), floorLineScores);
 
         for (int i = 0; i < 5; i++) {
-            //TODO: use constructor
-            //wallLines.add(new WallLine());
-            patternLines.add(new PatternLine(i + 1, floorLine, wallLines.get(i)));
+            wallLines.add(new WallLine(tileTypesSequenceWall.get(i)));
+            patternLines.add(new PatternLine(i + 1, floor, wallLines.get(i)));
         }
+        setNeighbours();
 
-        points = new Points(0);
+    }
+
+    private void setNeighbours(){
+        wallLines.get(0).setDownWall(wallLines.get(1));
+        for(int i = 1; i < 4; i++){
+            wallLines.get(i).setUpWall(wallLines.get(i - 1));
+            wallLines.get(i).setDownWall(wallLines.get(i + 1));
+        }
+        wallLines.get(4).setUpWall(wallLines.get(3));
     }
 
     private void fillFlorLineScores() {
@@ -41,47 +53,69 @@ public class Board {
         }
     }
 
+    private void fillTypesSequenceWall() {
+        for (int i = 0; i < 5; i++) {
+            tileTypesSequenceWall.add(i, new ArrayList<Tile>());
+            for (int j = 0; j < 5; j++) {
+                Tile wallTyle = null;
+                if (i == j) wallTyle = Tile.BLUE;
+                else if ((i + 1) % 5 == j) wallTyle = Tile.YELLOW;
+                else if ((i + 2) % 5 == j) wallTyle = Tile.RED;
+                else if ((i + 3) % 5 == j) wallTyle = Tile.BLACK;
+                else if ((i + 4) % 5 == j) wallTyle = Tile.GREEN;
+                tileTypesSequenceWall.get(i).add(j, wallTyle);
+            }
+        }
+    }
+
     public void put(int destinationIdx, ArrayList<Tile> tyles) {
         patternLines.get(destinationIdx).put(tyles);
     }
 
-    public FinishRoundResult finishRound() {
-        if (hasCompleteRow()) {
-            roundResult = GAME_FINISHED;
-            endGame();
-        } else roundResult = NORMAL;
-
-        return roundResult;
-    }
-
-    public boolean hasCompleteRow() {
-        boolean complete;
-        for (int row = 0; row < 5; row++) {
-            complete = true;
-            for (int col = 0; col < 5; col++) {
-//                for (Tile tyle : wallLines.get(row).getTiles()) {
-//                    if (tyle == null) {
-//                        complete = false;
-//                        break;
-//                    }
-//                }
-                complete = false;
-                break;
-
-            }
-            if (complete) return true;
+    private ArrayList<ArrayList<Optional<Tile>>> wallToArrayList(){
+        ArrayList<ArrayList<Optional<Tile>>> wall = new ArrayList<>();
+        for(WallLine wallLine : wallLines){
+            wall.add(wallLine.getTiles());
         }
-        return false;
+        return wall;
     }
+
+    public FinishRoundResult finishRound() {
+        int finishRoundSum = 0;
+        for (int i = 0; i < 5; i++){
+            finishRoundSum += patternLines.get(i).finishRound().getValue();
+        }
+        points = new Points(points.getValue() + finishRoundSum - floor.finishRound().getValue());
+
+
+        if (gameResult.gameFinished(wallToArrayList()) == GAME_FINISHED ) {
+            return GAME_FINISHED;
+        }
+        return NORMAL;
+    }
+
+
 
     public void endGame() {
         FinalPointsCalculationComposite bonus = new FinalPointsCalculationComposite();
+<<<<<<< HEAD
        // points = new Points(points.getValue() + bonus.getPoints(finalWall).getValue());
         //points = new Points(points.getValue() + bonus.getPoints(finalWall).getValue());
+=======
+        points = new Points(points.getValue() + bonus.getPoints(wallToArrayList()).getValue());
+//      No test!!! Will be Changed in the future
+>>>>>>> 92a18c7af19c401dd156286b18608519446b2c4b
     }
 
     public String state() {
-        return null;
+        String score = "Score: " + points.toString() + "\n";
+        String pLines = "Pattern lines:\n";
+        String wLines = "Wall lines:\n";
+        for (int i = 0; i < 5; i++) {
+            pLines += patternLines.get(i).state() + "\n";
+            wLines += wallLines.get(i).state() + "\n";
+        }
+        return score + pLines + wLines ;
     }
 
 }

@@ -1,28 +1,32 @@
 package Code;
 
 import Code.Interfaces.GameInterface;
+import Code.Interfaces.ObserverInterface;
 
 import java.util.ArrayList;
 
-public class  Game implements GameInterface {
+public class Game implements GameInterface {
     private int numOfPlayers;
     private int curPlayer;
     private Bag bag;
     private ArrayList<Board> playerBoards;
     private String winner;
     private ArrayList<Factory> factories;
+    private ArrayList<GameObserver> observers;
+    private TableArea tableArea;
 
-    private static final String[] defaultNames = { "Player 1", "Player 2", "Player 3", "Player 4" };
-    private static final int[] factoryCount = { -1, -1, 5, 7, 9 };
+    private static final String[] defaultNames = {"Player 1", "Player 2", "Player 3", "Player 4"};
+    private static final int[] factoryCount = {-1, -1, 5, 7, 9};
 
-    public Game(int numOfplayers){
+    public Game(int numOfplayers) {
         this(numOfplayers, defaultNames);
     }
-    public Game(int numOfPlayers, String[] nameOfPlayers){
-        if(numOfPlayers < 2 || numOfPlayers > 4){
+
+    public Game(int numOfPlayers, String[] nameOfPlayers) {
+        if (numOfPlayers < 2 || numOfPlayers > 4) {
             throw new IllegalArgumentException("Number of players must be 2-4.");
         }
-        if(nameOfPlayers.length < numOfPlayers){
+        if (nameOfPlayers.length < numOfPlayers) {
             throw new IllegalArgumentException("Not enough names for the given number of players");
         }
 
@@ -31,23 +35,69 @@ public class  Game implements GameInterface {
         this.playerBoards = new ArrayList<Board>();
         this.bag = new Bag();
         this.factories = new ArrayList<>();
+        this.observers = new ArrayList<>();
+        this.tableArea = new TableArea();
 
         curPlayer = (int) (Math.random() * numOfPlayers);
 
-        for (int i = 0; i < numOfPlayers; i++){
+        for (int i = 0; i < numOfPlayers; i++) {
             playerBoards.add(i, new Board());
+            observers.add(i, new GameObserver());
         }
         int numOfFactories = factoryCount[numOfPlayers];
+<<<<<<< HEAD
         for(int i = 0; i < numOfFactories; i++){
             factories.add(new Factory(bag));
         }
+=======
+        for (int i = 0; i < numOfFactories; i++) {
+            factories.add(new Factory());
+        }
+
+
+>>>>>>> 92a18c7af19c401dd156286b18608519446b2c4b
     }
-    public int getCurrentPLayer(){
+
+    public int getCurrentPLayer() {
         return curPlayer;
     }
 
     @Override
     public boolean take(int playerId, int sourceId, int idx, int destinationIdx) {
         return false;
+    }
+
+    private void endRound () {
+        boolean gameFinished = false;
+        for (Board board : playerBoards) {
+            if (board.finishRound() == FinishRoundResult.GAME_FINISHED) {
+                gameFinished = true;
+                break;
+            }
+        }
+        if (gameFinished) {
+            endGame();
+        }
+    }
+
+    private void endGame() {
+        for (GameObserver observer : observers) {
+            observer.notifyEverybody("Game finished!");
+        }
+
+        Points winnerPoints = new Points(0);
+        for (int i = 0; i < playerBoards.size(); i++) {
+            playerBoards.get(i).endGame();
+            if (winnerPoints.getValue() < playerBoards.get(i).points.getValue()) {
+                winnerPoints = new Points(playerBoards.get(i).points.getValue());
+                winner = defaultNames[i];
+            }
+            for (GameObserver observer : observers) {
+                observer.notifyEverybody(defaultNames[i] + "'s score is: " + playerBoards.get(i).points.getValue() + ".");
+            }
+        }
+        for (GameObserver observer : observers) {
+            observer.notifyEverybody("Winner is " + winner + "! Winner's score is : " + winnerPoints.getValue() + ".");
+        }
     }
 }
