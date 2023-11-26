@@ -18,19 +18,19 @@ public class FinalPointsCalculationComposite implements Component {
 
     }
     @Override
-    public Points getPoints(ArrayList<ArrayList<Optional<Tile>>> board) {
+    public Points getPoints(ArrayList<ArrayList<Optional<Tile>>> wall) {
         int totalPoints = 0;
 
-        totalPoints += calculateColorPoints(board);
-        totalPoints += calculateHorizontalRowPoints(board);
-        totalPoints += calculateVerticalColumnPoints(board);
+        totalPoints += calculateColorPoints(wall);
+        totalPoints += calculateHorizontalRowPoints(wall);
+        totalPoints += calculateVerticalColumnPoints(wall);
 
         return new Points(totalPoints);
     }
 
-    public int calculateHorizontalRowPoints(ArrayList<ArrayList<Optional<Tile>>> board) {
+    public int calculateHorizontalRowPoints(ArrayList<ArrayList<Optional<Tile>>> wall) {
         int horizontalPoints = 0;
-        for (ArrayList<Optional<Tile>> row : board) {
+        for (ArrayList<Optional<Tile>> row : wall) {
             if (isRowComplete(row)) {
                 horizontalPoints += 2;
             }

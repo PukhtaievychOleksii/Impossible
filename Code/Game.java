@@ -39,11 +39,8 @@ public class  Game implements GameInterface {
         }
         int numOfFactories = factoryCount[numOfPlayers];
         for(int i = 0; i < numOfFactories; i++){
-            factories.add(new Factory());
+            factories.add(new Factory(bag));
         }
-
-
-
     }
     public int getCurrentPLayer(){
         return curPlayer;

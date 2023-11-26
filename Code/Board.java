@@ -76,11 +76,8 @@ public class Board {
 
     public void endGame() {
         FinalPointsCalculationComposite bonus = new FinalPointsCalculationComposite();
-<<<<<<< HEAD
        // points = new Points(points.getValue() + bonus.getPoints(finalWall).getValue());
-=======
         //points = new Points(points.getValue() + bonus.getPoints(finalWall).getValue());
->>>>>>> 9f7e9144890f15609cb21241fda8354537f32d4c
     }
 
     public String state() {
