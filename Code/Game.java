@@ -1,7 +1,6 @@
 package Code;
 
 import Code.Interfaces.GameInterface;
-import Code.Interfaces.ObserverInterface;
 
 import java.util.ArrayList;
 
@@ -36,7 +35,7 @@ public class Game implements GameInterface {
         this.bag = new Bag();
         this.factories = new ArrayList<>();
         this.observers = new ArrayList<>();
-        this.tableArea = new TableArea();
+        //this.tableArea = new TableArea();
 
         curPlayer = (int) (Math.random() * numOfPlayers);
 
@@ -45,17 +44,13 @@ public class Game implements GameInterface {
             observers.add(i, new GameObserver());
         }
         int numOfFactories = factoryCount[numOfPlayers];
-<<<<<<< HEAD
         for(int i = 0; i < numOfFactories; i++){
             factories.add(new Factory(bag));
         }
-=======
         for (int i = 0; i < numOfFactories; i++) {
-            factories.add(new Factory());
+           // factories.add(new Factory());
         }
 
-
->>>>>>> 92a18c7af19c401dd156286b18608519446b2c4b
     }
 
     public int getCurrentPLayer() {

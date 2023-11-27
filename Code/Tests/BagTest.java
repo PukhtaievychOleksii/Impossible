@@ -35,8 +35,11 @@ package Code.Tests;
 import Code.Bag;
 import Code.Tile;
 import org.junit.jupiter.api.Test;
-import java.util.*;
-import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BagTest {
@@ -57,5 +60,3 @@ public class BagTest {
         }
     }
 
-
->>>>>>> 92a18c7af19c401dd156286b18608519446b2c4b
