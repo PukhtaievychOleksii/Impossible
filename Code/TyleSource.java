@@ -4,17 +4,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class TyleSource {
-    private Factory sourceFactory;
-    private ArrayList<Tile> sourceTiles;
-    public TyleSource(Factory factory){
-        this.sourceFactory = factory;
-        this.sourceTiles = factory.getFactoryTiles();
+    protected ArrayList<Tile> sourceTiles;
+    public TyleSource(){
+        this.sourceTiles = new ArrayList();
     }
     public ArrayList<Tile> take(int indexOfTile){
         ArrayList<Tile> oneColorTiles = new ArrayList<>();
         Tile tile = sourceTiles.get(indexOfTile);
         for(Tile t : sourceTiles){
-            if(tile.toString().equals(t.toString())){
+            if(tile.equals(t)){
                 oneColorTiles.add(t);
                 sourceTiles.remove(t);
             }
@@ -22,21 +20,19 @@ public class TyleSource {
         return oneColorTiles;
     }
     public boolean isEmpty(){
-        return sourceFactory.isEmpty();
+        return sourceTiles.isEmpty();
     }
-    public ArrayList<Tile> getSourceTiles(){
-        return sourceTiles;
+
+    public void startNewRound(){
+
     }
-    //must be a function startNewRound()
     public String state(){
         String result = "";
-        if(!sourceFactory.isEmpty()){
-            result += "The size of SourceTile is " +  sourceFactory.sizeOfFactory() + "\n";
+        if(!sourceTiles.isEmpty()){
+            result += "Contains: ";
+            result += sourceTiles.toString();
         }
-        result += "SourceTyle contains: ";
-        for(Tile tile : sourceFactory.getFactoryTiles()){
-            result += tile.toString() + ",";
-        }
+
         return result;
     }
 

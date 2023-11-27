@@ -2,9 +2,18 @@ package Code;
 
 import java.util.ArrayList;
 
-public class Factory {
+public class Factory extends TyleSource{
     private ArrayList<Tile> factoryTiles;
-    public Factory(Bag bag) {
+    private TableCenter tableCenter;
+    private Bag bag;
+    public Factory(Bag bag, TableCenter tableCenter) {
+        super();
+        this.bag = bag;
+        this.tableCenter = tableCenter;
+    }
+
+    @Override
+    public void startNewRound(){
         if (bag.sizeOfBag() >= 4) {
             factoryTiles = bag.take(4);
         }
@@ -12,11 +21,19 @@ public class Factory {
             factoryTiles = bag.take(bag.sizeOfBag());
         }
     }
-    public ArrayList<Tile> getFactoryTiles(){
-        return factoryTiles;
-    }
-    public boolean isEmpty(){
-        return factoryTiles.isEmpty();
+
+    @Override
+    public ArrayList<Tile> take(int indexOfTile){
+        ArrayList<Tile> toReturn = super.take(indexOfTile);
+        ArrayList<Tile> moveToCenter = new ArrayList<>();
+        for(Tile tile : sourceTiles){
+            if(!toReturn.contains(tile)) {
+                moveToCenter.add(tile);
+                sourceTiles.remove(tile);
+            }
+        }
+        tableCenter.add(moveToCenter);
+        return toReturn;
     }
     public int sizeOfFactory(){
         return factoryTiles.size();
