@@ -80,7 +80,7 @@ public class WallLine {
         vertSeq += goDownWall(index, downWall);
 
 
-        if(horSeq == 1 && vertSeq == 1) points = 1;
+        if(horSeq * vertSeq == horSeq || horSeq * vertSeq == vertSeq) points = Math.max(horSeq, vertSeq);
         else points = horSeq + vertSeq;
 
         return new Points(points);

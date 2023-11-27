@@ -15,10 +15,6 @@ public class Bag {
             }
         }
         Collections.shuffle(bag);
-
-        /*List<Tile> bagList = new ArrayList<>(bag);
-        Collections.shuffle(bagList);
-        bag = new ArrayDeque<>(bagList);*/
     }
 
     public ArrayList<Tile> take(int count){

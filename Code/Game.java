@@ -36,7 +36,7 @@ public class Game implements GameInterface {
         this.bag = new Bag();
         this.factories = new ArrayList<>();
         this.observers = new ArrayList<>();
-        this.tableArea = new TableArea();
+        //this.tableArea = new TableArea();
 
         curPlayer = (int) (Math.random() * numOfPlayers);
 
@@ -49,7 +49,7 @@ public class Game implements GameInterface {
             factories.add(new Factory(bag));
         }
         for (int i = 0; i < numOfFactories; i++) {
-            factories.add(new Factory());
+            factories.add(new Factory(bag));
         }
     }
 
