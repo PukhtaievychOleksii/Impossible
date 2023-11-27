@@ -316,4 +316,3 @@ public class FinalPointsTest {
         assertEquals(5 * 10, result);
     }
 }
-

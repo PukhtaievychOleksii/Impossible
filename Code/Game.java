@@ -35,20 +35,29 @@ public class Game implements GameInterface {
         this.bag = new Bag();
         this.factories = new ArrayList<>();
 <<<<<<< HEAD
+//        this.tableArea = new TableArea();
+        //this.tableArea = new TableArea();
+=======
+<<<<<<< HEAD
+        //this.observers = new ArrayList<>();
+=======
+<<<<<<< HEAD
         this.observers = new ArrayList<>();
 <<<<<<< HEAD
 //        this.tableArea = new TableArea();
 =======
+>>>>>>> d893639a03e6eb94f43cc647a39e2ff52f313b28
         //this.tableArea = new TableArea();
-=======
+        //this.tableArea = new TableArea();
 <<<<<<< HEAD
-        this.tableArea = new TableArea();
-=======
-        this.observers = new ArrayList<>();
+        //this.observers = new ArrayList<>();
         //this.tableArea = new TableArea();
+=======
 >>>>>>> 87266292d4aeea80ab0b70dc586b6e855905476d
 >>>>>>> b834ed97e2681dff99ed1e5e4ccff5423557986e
 >>>>>>> f955a926cef94962dba504a3141a40aff7e4eab3
+>>>>>>> d893639a03e6eb94f43cc647a39e2ff52f313b28
+>>>>>>> 4552d69acf0d2427b3d8259bd653ab28d7842525
 
         curPlayer = (int) (Math.random() * numOfPlayers);
 
@@ -68,12 +77,14 @@ public class Game implements GameInterface {
            // factories.add(new Factory());
         }
 
-=======
         for (int i = 0; i < numOfFactories; i++) {
             factories.add(new Factory(bag));
         }
+<<<<<<< HEAD
+=======
 >>>>>>> b834ed97e2681dff99ed1e5e4ccff5423557986e
 >>>>>>> f955a926cef94962dba504a3141a40aff7e4eab3
+>>>>>>> d893639a03e6eb94f43cc647a39e2ff52f313b28
     }
 
     public int getCurrentPLayer() {
