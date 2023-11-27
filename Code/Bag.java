@@ -27,7 +27,11 @@ public class Bag {
      предполагая что оно List, вызывается ошибка ClassCastException.
      Сначала создай лист на основе декью а потом можно будет мешать. я пределала
      проверь 16-18 строчку*/
+<<<<<<< HEAD
         >>>>>>> 9f657a6140b680d1667b23546556888cab0b1b07
+=======
+>>>>>>> 9f657a6140b680d1667b23546556888cab0b1b07
+>>>>>>> 330c35b9da70eda6837c26375d7cc3e6c429d9ec
     public ArrayList<Tile> take(int count){
         ArrayList<Tile> taken = new ArrayList<>();
         for(int i = 0; i < count; i++){
