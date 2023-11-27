@@ -33,5 +33,23 @@ public class PatternLineTest {
         patternLine.put(tiles3);
         assertEquals("Line shouldn`t be full, another color.", patternLine.isLineFull(), false);
 
+        patternLine.resetLine();
+        ArrayList<Tile> tiles4 = new ArrayList<>(Arrays.asList(Tile.RED,Tile.RED));
+        patternLine.put(tiles4);
+        Points points1 = patternLine.finishRound();
+        assertEquals("Player shouldn`t get any points", 0, points1.getValue());
+        ArrayList<Tile> tiles5 = new ArrayList<>(Arrays.asList(Tile.RED,Tile.RED, Tile.YELLOW));
+        patternLine.put(tiles5);
+        Points points2 = patternLine.finishRound();
+        assertEquals("Player shouldn`t get any points", 0, points2.getValue());
+        ArrayList<Tile> tiles6 = new ArrayList<>(Arrays.asList(Tile.RED));
+        patternLine.put(tiles6);
+        Points points3 = patternLine.finishRound();
+        assertEquals("Player shouldn`t get any points", 0, points3.getValue());
+        ArrayList<Tile> tiles7 = new ArrayList<>(Arrays.asList(Tile.RED, Tile.RED));
+        patternLine.put(tiles7);
+        Points points4 = patternLine.finishRound();
+        assertEquals("Player shouldn`t get any points", 1, points4.getValue());
+
     }
 }

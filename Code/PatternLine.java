@@ -8,6 +8,7 @@ public class PatternLine {
     private ArrayList<Tile> presentTiles;
     private Floor floor;
     private WallLine wallLine;
+    private UsedTyles usedTyles;
 
     public PatternLine(int capacity, Floor floor, WallLine relatedWallLine){
         this.capacity = capacity;
@@ -16,8 +17,16 @@ public class PatternLine {
         resetLine();
     }
 
+    private void SetUsedTyles(UsedTyles usedTyles){
+        this.usedTyles = usedTyles;
+    }
     public void resetLine(){
-        presentTiles = new ArrayList<>();
+        for(Tile tile: presentTiles){
+            ArrayList<Tile> tiles = new ArrayList<>();
+            tiles.add(tile);
+            usedTyles.give(tiles);
+            presentTiles.remove(tile);
+        }
     }
 
     public boolean isLineFull(){

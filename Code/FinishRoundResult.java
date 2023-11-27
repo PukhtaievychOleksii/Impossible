@@ -1,6 +1,6 @@
 package Code;
 
-enum FinishRoundResult {
+public enum FinishRoundResult {
     NORMAL,
     GAME_FINISHED;
 }

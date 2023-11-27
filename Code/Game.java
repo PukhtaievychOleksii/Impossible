@@ -1,7 +1,6 @@
 package Code;
 
 import Code.Interfaces.GameInterface;
-import Code.Interfaces.ObserverInterface;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -35,21 +34,17 @@ public class Game implements GameInterface {
         bag = new Bag();
         playerBoards = new ArrayList<Board>();
         gameObserver = Optional.empty();
-        tableArea = new TableArea();
+
+        int numOfFactories = factoryCount[numOfPlayers];
+        tableArea = new TableArea(numOfFactories);
+
 
         curPlayer = (int) (Math.random() * numOfPlayers);
         //create boards
         for (int i = 0; i < numOfPlayers; i++) {
             playerBoards.add(i, new Board());
         }
-        //create tablr area
-        int numOfFactories = factoryCount[numOfPlayers];
-        for(int i = 0; i < numOfFactories; i++){
-            factories.add(new Factory(bag));
-        }
-        for (int i = 0; i < numOfFactories; i++) {
-            factories.add(new Factory());
-        }
+
     }
 
     public void SetGameObserver(GameObserver gameObserver){
@@ -65,7 +60,7 @@ public class Game implements GameInterface {
         return false;
     }
 
-    private void endRound () {
+    private void endRound() {
         boolean gameFinished = false;
         for (Board board : playerBoards) {
             if (board.finishRound() == FinishRoundResult.GAME_FINISHED) {
@@ -79,9 +74,8 @@ public class Game implements GameInterface {
     }
 
     private void endGame() {
-        for (GameObserver observer : observers) {
-            observer.notifyEverybody("Game finished!");
-        }
+        GameObserver gameObserver = new GameObserver();
+        gameObserver.notifyEverybody("Game is finished!");
 
         Points winnerPoints = new Points(0);
         for (int i = 0; i < playerBoards.size(); i++) {
@@ -90,12 +84,9 @@ public class Game implements GameInterface {
                 winnerPoints = new Points(playerBoards.get(i).points.getValue());
                 winner = defaultNames[i];
             }
-            for (GameObserver observer : observers) {
-                observer.notifyEverybody(defaultNames[i] + "'s score is: " + playerBoards.get(i).points.getValue() + ".");
-            }
+            gameObserver.notifyEverybody(defaultNames[i] + "'s score is: " + playerBoards.get(i).points.getValue() + ".");
+
         }
-        for (GameObserver observer : observers) {
-            observer.notifyEverybody("Winner is " + winner + "! Winner's score is : " + winnerPoints.getValue() + ".");
-        }
+        gameObserver.notifyEverybody("Winner is " + winner + "! Winner's score is : " + winnerPoints.getValue() + ".");
     }
 }
