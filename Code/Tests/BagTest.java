@@ -14,7 +14,6 @@ public class BagTest {
 
         int count = 5;
         ArrayList<Tile> takenTiles = bag.take(count);
-
         assertEquals(count, takenTiles.size(), "Incorrect number of tiles taken");
 
         }
