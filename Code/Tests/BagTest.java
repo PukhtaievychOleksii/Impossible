@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 //package Code.Tests;
 //
@@ -27,13 +28,22 @@
 //        assertEquals(count, takenTiles.size());
 //    }
 
+=======
+>>>>>>> f955a926cef94962dba504a3141a40aff7e4eab3
 package Code.Tests;
 
 import Code.Bag;
 import Code.Tile;
 import org.junit.jupiter.api.Test;
+<<<<<<< HEAD
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
+=======
 import java.util.*;
-import static org.junit.Assert.*;
+>>>>>>> b834ed97e2681dff99ed1e5e4ccff5423557986e
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BagTest {
@@ -44,9 +54,9 @@ public class BagTest {
 
         int count = 5;
         ArrayList<Tile> takenTiles = bag.take(count);
-
         assertEquals(count, takenTiles.size(), "Incorrect number of tiles taken");
 
+<<<<<<< HEAD
 //        Set<Tile> uniqueTiles = new HashSet<>(takenTiles);
 //        assertEquals(count, uniqueTiles.size(), "Duplicate tiles found in taken tiles");
 
@@ -55,3 +65,8 @@ public class BagTest {
     }
 
 
+=======
+        }
+    }
+
+>>>>>>> f955a926cef94962dba504a3141a40aff7e4eab3

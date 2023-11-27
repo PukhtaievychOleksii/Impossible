@@ -1,24 +1,39 @@
 package Code;
 
-import java.util.*;
-
-import static java.time.chrono.JapaneseEra.values;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Stack;
 
 public class Bag {
     private Stack<Tile> bag;
 
     public Bag(){
         this.bag = new Stack<>();
-        for(Tile color : Tile.values()){
+        for(Tile color : Tile.values()) {
             for (int i = 0; i < 20; i++) {
                 bag.push(color);
             }
         }
         Collections.shuffle(bag);
     }
+<<<<<<< HEAD
 
 
 
+=======
+<<<<<<< HEAD
+     /*   List<Tile> bagList = new ArrayList<>(bag);
+        Collections.shuffle(bagList);
+        bag = new ArrayDeque<>(bagList);
+    }*/
+    /*На 16 строке ты пытаешься перемешать элементы ArrayDeque
+     предполагая что оно List, вызывается ошибка ClassCastException.
+     Сначала создай лист на основе декью а потом можно будет мешать. я пределала
+     проверь 16-18 строчку*/
+=======
+
+>>>>>>> b834ed97e2681dff99ed1e5e4ccff5423557986e
+>>>>>>> f955a926cef94962dba504a3141a40aff7e4eab3
     public ArrayList<Tile> take(int count){
         ArrayList<Tile> taken = new ArrayList<>();
         for(int i = 0; i < count; i++){

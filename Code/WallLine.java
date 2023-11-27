@@ -1,7 +1,6 @@
 package Code;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Optional;
 
 public class WallLine {
@@ -27,6 +26,10 @@ public class WallLine {
     public void setDownWall(WallLine downWall){
         this.downWall = Optional.of(downWall);
     }
+
+    public Optional<WallLine> getUpWall(){ return upWall;}
+
+    public Optional<WallLine> getDownWall(){ return downWall;}
 
     public boolean canPutTile(Tile tile){
         boolean ans = true;
@@ -56,22 +59,40 @@ public class WallLine {
         presentTiles.set(index, Optional.of(tile));
         //count
         int horSeq = 1;
-        int vertSeq = 1;
-        if(index - 1 >= 0 && !presentTiles.get(index - 1).isEmpty()) horSeq++;
-        if(index + 1 < presentTiles.size() && !presentTiles.get(index + 1).isEmpty()) horSeq++;
-        if(upWall.isPresent()){
-            ArrayList<Optional<Tile>> upLine = upWall.get().getTiles();
-            if(upLine.get(index).isPresent()) vertSeq++;
+        //go right wall
+        int walker = index + 1;
+        while(walker < presentTiles.size()){
+            if(presentTiles.get(walker).isPresent()) horSeq++;
+            else break;
+            walker++;
         }
-        if(downWall.isPresent()){
-            ArrayList<Optional<Tile>> downLine = downWall.get().getTiles();
-            if(downLine.get(index).isPresent()) vertSeq++;
+        //go left wall
+        walker = index - 1;
+        while(walker > 0){
+            if(presentTiles.get(walker).isPresent()) horSeq++;
+            else break;
+            walker--;
         }
 
-        if(horSeq == 1 && vertSeq == 1) points = 1;
-        //TODO: FIX Points calculation to full
+        int vertSeq = 1;
+        vertSeq += goUpWall(index, upWall);
+        vertSeq += goDownWall(index, downWall);
+
+
+        if(horSeq * vertSeq == horSeq || horSeq * vertSeq == vertSeq) points = Math.max(horSeq, vertSeq);
+        else points = horSeq + vertSeq;
 
         return new Points(points);
+    }
+
+    private int goUpWall(int index, Optional<WallLine> upWall){
+        if(upWall.isPresent() && upWall.get().getTiles().get(index).isPresent()) return 1 + goUpWall(index, upWall.get().getUpWall());
+        return 0;
+    }
+
+    private int goDownWall(int index, Optional<WallLine> downWall){
+        if(downWall.isPresent() && downWall.get().getTiles().get(index).isPresent()) return 1 + goDownWall(index, downWall.get().getDownWall());
+        return 0;
     }
 
 
