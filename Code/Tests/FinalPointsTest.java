@@ -200,7 +200,7 @@ public class FinalPointsTest {
                         Optional.of(Tile.YELLOW)
                 )
         );
-       ArrayList<Optional<Tile>> row5 = new ArrayList<>(
+        ArrayList<Optional<Tile>> row5 = new ArrayList<>(
                 Arrays.asList(
                         Optional.of(Tile.RED),
                         Optional.of(Tile.YELLOW)

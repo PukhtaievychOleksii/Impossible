@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TableArea {
     private ArrayList<TyleSource> factoriesOnArea;
-    public TableArea(ArrayList<Factory> factories){
+    public TableArea(Bag bag){
         factoriesOnArea = new ArrayList<>();
         for(Factory factory : factories) {
             factoriesOnArea.add(new TyleSource(factory));
@@ -16,25 +16,30 @@ public class TableArea {
         return taken;
     }
     public boolean isRoundEnd(){
-        return true;
+        int count = 0;
+        for(TyleSource source : factoriesOnArea){
+            if (source.isEmpty()){
+                count ++;
+            }
+        }
+        return count == 5;
     }
-    public void  startNewRound(){
+    public void startNewRound(){
+        if(isRoundEnd()){
+
+        }
     }
     public String state() {
         String result = "";
-        for(int i = 0; i < factoriesOnArea.size(); i++){
-            result += "Factory " + (i+1);
-            if (!factoriesOnArea.get(i).isEmpty()){
-                result += " contains:";
-                ArrayList<Tile> presentTiles = factoriesOnArea.get(i).getSourceTiles();
-                for(Tile tile : presentTiles){
-                    result += tile.toString() + ",";
-                }
-            }
-            else{
+        for (int i = 0; i < factoriesOnArea.size(); i++) {
+            result += "Factory " + (i + 1);
+            if (!factoriesOnArea.get(i).isEmpty()) {
+                result += factoriesOnArea.get(i).state();
+            } else {
                 result += " is Empty";
             }
         }
         return result;
     }
-}
+    }
+
