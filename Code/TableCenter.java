@@ -1,8 +1,13 @@
 package Code;
 
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TableCenter extends TyleSource{
 
@@ -15,6 +20,14 @@ public class TableCenter extends TyleSource{
         ArrayList<Tile> arrayList = new ArrayList<>();
         arrayList.add(Tile.STARTING_PLAYER);
         add(arrayList);
+    }
+
+    @Test
+    public void startNewRoundTest () {
+        TableCenter tableCenter = new TableCenter();
+        tableCenter.startNewRound();
+        assertEquals(1, tableCenter.sourceTiles.size());
+        assertTrue(tableCenter.sourceTiles.contains(Tile.STARTING_PLAYER));
     }
 
 }
