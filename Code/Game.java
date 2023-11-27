@@ -4,16 +4,17 @@ import Code.Interfaces.GameInterface;
 import Code.Interfaces.ObserverInterface;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class Game implements GameInterface {
     private int numOfPlayers;
     private int curPlayer;
     private Bag bag;
     private ArrayList<Board> playerBoards;
-    private String winner;
-    private ArrayList<Factory> factories;
-    private ArrayList<GameObserver> observers;
     private TableArea tableArea;
+    private Optional<GameObserver> gameObserver;
+    //private String winner;
+
 
     private static final String[] defaultNames = {"Player 1", "Player 2", "Player 3", "Player 4"};
     private static final int[] factoryCount = {-1, -1, 5, 7, 9};
@@ -26,24 +27,22 @@ public class Game implements GameInterface {
         if (numOfPlayers < 2 || numOfPlayers > 4) {
             throw new IllegalArgumentException("Number of players must be 2-4.");
         }
-        if (nameOfPlayers.length < numOfPlayers) {
-            throw new IllegalArgumentException("Not enough names for the given number of players");
+        if (nameOfPlayers.length != numOfPlayers) {
+            throw new IllegalArgumentException("NotEnough/TooMany names for the given number of players");
         }
 
         this.numOfPlayers = numOfPlayers;
-        this.winner = "none";
-        this.playerBoards = new ArrayList<Board>();
-        this.bag = new Bag();
-        this.factories = new ArrayList<>();
-        this.observers = new ArrayList<>();
-        this.tableArea = new TableArea();
+        bag = new Bag();
+        playerBoards = new ArrayList<Board>();
+        gameObserver = Optional.empty();
+        tableArea = new TableArea();
 
         curPlayer = (int) (Math.random() * numOfPlayers);
-
+        //create boards
         for (int i = 0; i < numOfPlayers; i++) {
             playerBoards.add(i, new Board());
-            observers.add(i, new GameObserver());
         }
+        //create tablr area
         int numOfFactories = factoryCount[numOfPlayers];
         for(int i = 0; i < numOfFactories; i++){
             factories.add(new Factory(bag));
@@ -51,6 +50,10 @@ public class Game implements GameInterface {
         for (int i = 0; i < numOfFactories; i++) {
             factories.add(new Factory());
         }
+    }
+
+    public void SetGameObserver(GameObserver gameObserver){
+        this.gameObserver = Optional.of(gameObserver);
     }
 
     public int getCurrentPLayer() {

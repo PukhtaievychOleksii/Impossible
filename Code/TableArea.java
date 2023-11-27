@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class TableArea {
     private ArrayList<TyleSource> factoriesOnArea;
-    public TableArea(){
+    public TableArea(int factoriesNum){
         factoriesOnArea = new ArrayList<>();
-        for(Factory factory : factories) {
+        for(Factory factory : factoriesOnArea) {
             factoriesOnArea.add(new TyleSource(factory));
         }
     }
