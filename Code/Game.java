@@ -35,7 +35,12 @@ public class Game implements GameInterface {
         this.playerBoards = new ArrayList<Board>();
         this.bag = new Bag();
         this.factories = new ArrayList<>();
+<<<<<<< HEAD
         this.tableArea = new TableArea();
+=======
+        this.observers = new ArrayList<>();
+        //this.tableArea = new TableArea();
+>>>>>>> 87266292d4aeea80ab0b70dc586b6e855905476d
 
         curPlayer = (int) (Math.random() * numOfPlayers);
 
