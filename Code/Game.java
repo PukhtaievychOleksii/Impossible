@@ -3,16 +3,17 @@ package Code;
 import Code.Interfaces.GameInterface;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class Game implements GameInterface {
     private int numOfPlayers;
     private int curPlayer;
     private Bag bag;
     private ArrayList<Board> playerBoards;
-    private String winner;
-    private ArrayList<Factory> factories;
-
     private TableArea tableArea;
+    private Optional<GameObserver> gameObserver;
+    //private String winner;
+
 
     private static final String[] defaultNames = {"Player 1", "Player 2", "Player 3", "Player 4"};
     private static final int[] factoryCount = {-1, -1, 5, 7, 9};
@@ -25,66 +26,29 @@ public class Game implements GameInterface {
         if (numOfPlayers < 2 || numOfPlayers > 4) {
             throw new IllegalArgumentException("Number of players must be 2-4.");
         }
-        if (nameOfPlayers.length < numOfPlayers) {
-            throw new IllegalArgumentException("Not enough names for the given number of players");
+        if (nameOfPlayers.length != numOfPlayers) {
+            throw new IllegalArgumentException("NotEnough/TooMany names for the given number of players");
         }
 
         this.numOfPlayers = numOfPlayers;
-        this.winner = "none";
-        this.playerBoards = new ArrayList<Board>();
-        this.bag = new Bag();
-        this.factories = new ArrayList<>();
-<<<<<<< HEAD
-//        this.tableArea = new TableArea();
-        //this.tableArea = new TableArea();
-=======
-<<<<<<< HEAD
-        //this.observers = new ArrayList<>();
-=======
-<<<<<<< HEAD
-        this.observers = new ArrayList<>();
-<<<<<<< HEAD
-//        this.tableArea = new TableArea();
-=======
->>>>>>> d893639a03e6eb94f43cc647a39e2ff52f313b28
-        //this.tableArea = new TableArea();
-        //this.tableArea = new TableArea();
-<<<<<<< HEAD
-        //this.observers = new ArrayList<>();
-        //this.tableArea = new TableArea();
-=======
->>>>>>> 87266292d4aeea80ab0b70dc586b6e855905476d
->>>>>>> b834ed97e2681dff99ed1e5e4ccff5423557986e
->>>>>>> f955a926cef94962dba504a3141a40aff7e4eab3
->>>>>>> d893639a03e6eb94f43cc647a39e2ff52f313b28
->>>>>>> 4552d69acf0d2427b3d8259bd653ab28d7842525
+        bag = new Bag();
+        playerBoards = new ArrayList<Board>();
+        gameObserver = Optional.empty();
+
+        int numOfFactories = factoryCount[numOfPlayers];
+        tableArea = new TableArea(numOfFactories);
+
 
         curPlayer = (int) (Math.random() * numOfPlayers);
-
+        //create boards
         for (int i = 0; i < numOfPlayers; i++) {
             playerBoards.add(i, new Board());
         }
-        int numOfFactories = factoryCount[numOfPlayers];
-        for(int i = 0; i < numOfFactories; i++){
-            factories.add(new Factory(bag));
-        }
-        for (int i = 0; i < numOfFactories; i++) {
-<<<<<<< HEAD
-            factories.add(new Factory(bag));
-        }
 
-=======
-           // factories.add(new Factory());
-        }
+    }
 
-        for (int i = 0; i < numOfFactories; i++) {
-            factories.add(new Factory(bag));
-        }
-<<<<<<< HEAD
-=======
->>>>>>> b834ed97e2681dff99ed1e5e4ccff5423557986e
->>>>>>> f955a926cef94962dba504a3141a40aff7e4eab3
->>>>>>> d893639a03e6eb94f43cc647a39e2ff52f313b28
+    public void SetGameObserver(GameObserver gameObserver){
+        this.gameObserver = Optional.of(gameObserver);
     }
 
     public int getCurrentPLayer() {
