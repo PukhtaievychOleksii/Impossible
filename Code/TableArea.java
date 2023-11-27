@@ -4,16 +4,26 @@ import java.util.ArrayList;
 
 public class TableArea {
     private ArrayList<TyleSource> factoriesOnArea;
-    public TableArea(Bag bag){
+    private TableCenter tableCenter;
+    public TableArea(int numOfFactories){
+        tableCenter = new TableCenter();
         factoriesOnArea = new ArrayList<>();
-        for(Factory factory : factories) {
-            factoriesOnArea.add(new TyleSource(factory));
+        int index = 0;
+        while(index < numOfFactories){
+            factoriesOnArea.add(new TyleSource());
+            index++;
         }
     }
     public ArrayList<Tile> take(int sourceId, int idx){
-        TyleSource source = factoriesOnArea.get(sourceId);
-        ArrayList<Tile> taken = source.take(idx);
-        return taken;
+        TyleSource source;
+        if(sourceId == 0){
+            source = tableCenter;
+        }
+        else {
+          source = factoriesOnArea.get(sourceId - 1);
+        }
+
+        return source.take(idx);
     }
     public boolean isRoundEnd(){
         int count = 0;
@@ -22,12 +32,13 @@ public class TableArea {
                 count ++;
             }
         }
-        return count == 5;
+        return count == factoriesOnArea.size() && tableCenter.isEmpty();
     }
     public void startNewRound(){
-        if(isRoundEnd()){
-
+        for(TyleSource source : factoriesOnArea){
+            source.startNewRound();
         }
+        tableCenter.startNewRound();
     }
     public String state() {
         String result = "";
