@@ -16,14 +16,14 @@ public class GameFinished {
         boolean complete;
         for (int row = 0; row < 5; row++) {
             complete = true;
-            for (int col = 0; col < 5; col++) {
+            //for (int col = 0; col < 5; col++) {
                 for (Optional<Tile> oTyle : wall.get(row)) {
-                    if (oTyle.isEmpty()) {
+                    if (!oTyle.isPresent()) {
                         complete = false;
                         break;
                     }
                 }
-            }
+            //}
             if (complete) return true;
         }
         return false;

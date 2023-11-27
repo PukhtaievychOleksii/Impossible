@@ -34,17 +34,11 @@ public class Game implements GameInterface {
         this.playerBoards = new ArrayList<Board>();
         this.bag = new Bag();
         this.factories = new ArrayList<>();
-<<<<<<< HEAD
-        this.observers = new ArrayList<>();
+        //this.observers = new ArrayList<>();
         //this.tableArea = new TableArea();
-=======
-<<<<<<< HEAD
-        this.tableArea = new TableArea();
-=======
-        this.observers = new ArrayList<>();
         //this.tableArea = new TableArea();
->>>>>>> 87266292d4aeea80ab0b70dc586b6e855905476d
->>>>>>> b834ed97e2681dff99ed1e5e4ccff5423557986e
+        //this.observers = new ArrayList<>();
+        //this.tableArea = new TableArea();
 
         curPlayer = (int) (Math.random() * numOfPlayers);
 
@@ -52,7 +46,6 @@ public class Game implements GameInterface {
             playerBoards.add(i, new Board());
         }
         int numOfFactories = factoryCount[numOfPlayers];
-<<<<<<< HEAD
         for(int i = 0; i < numOfFactories; i++){
             factories.add(new Factory(bag));
         }
@@ -60,11 +53,9 @@ public class Game implements GameInterface {
            // factories.add(new Factory());
         }
 
-=======
         for (int i = 0; i < numOfFactories; i++) {
             factories.add(new Factory(bag));
         }
->>>>>>> b834ed97e2681dff99ed1e5e4ccff5423557986e
     }
 
     public int getCurrentPLayer() {
