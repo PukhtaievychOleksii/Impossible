@@ -55,6 +55,7 @@ public class PatternLine {
         if(isLineFull()){
             Tile instance = presentTiles.get(0);
             points = wallLine.putTile(instance);
+            presentTiles.remove(instance);
             resetLine();
         }
         return points;
