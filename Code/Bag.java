@@ -16,6 +16,18 @@ public class Bag {
         }
         Collections.shuffle(bag);
     }
+<<<<<<< HEAD
+=======
+
+     /*   List<Tile> bagList = new ArrayList<>(bag);
+        Collections.shuffle(bagList);
+        bag = new ArrayDeque<>(bagList);
+    }*/
+    /*На 16 строке ты пытаешься перемешать элементы ArrayDeque
+     предполагая что оно List, вызывается ошибка ClassCastException.
+     Сначала создай лист на основе декью а потом можно будет мешать. я пределала
+     проверь 16-18 строчку*/
+>>>>>>> 9f657a6140b680d1667b23546556888cab0b1b07
     public ArrayList<Tile> take(int count){
         ArrayList<Tile> taken = new ArrayList<>();
         for(int i = 0; i < count; i++){

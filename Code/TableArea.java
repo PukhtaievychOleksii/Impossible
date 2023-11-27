@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class TableArea {
     private ArrayList<TyleSource> factoriesOnArea;
+
     private TableCenter tableCenter;
     public TableArea(int numOfFactories){
         tableCenter = new TableCenter();
