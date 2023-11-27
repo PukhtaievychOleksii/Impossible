@@ -11,7 +11,7 @@ public class Game implements GameInterface {
     private ArrayList<Board> playerBoards;
     private String winner;
     private ArrayList<Factory> factories;
-    private ArrayList<GameObserver> observers;
+
     private TableArea tableArea;
 
     private static final String[] defaultNames = {"Player 1", "Player 2", "Player 3", "Player 4"};
@@ -34,16 +34,25 @@ public class Game implements GameInterface {
         this.playerBoards = new ArrayList<Board>();
         this.bag = new Bag();
         this.factories = new ArrayList<>();
+<<<<<<< HEAD
         this.observers = new ArrayList<>();
         //this.tableArea = new TableArea();
+=======
+<<<<<<< HEAD
+        this.tableArea = new TableArea();
+=======
+        this.observers = new ArrayList<>();
+        //this.tableArea = new TableArea();
+>>>>>>> 87266292d4aeea80ab0b70dc586b6e855905476d
+>>>>>>> b834ed97e2681dff99ed1e5e4ccff5423557986e
 
         curPlayer = (int) (Math.random() * numOfPlayers);
 
         for (int i = 0; i < numOfPlayers; i++) {
             playerBoards.add(i, new Board());
-            observers.add(i, new GameObserver());
         }
         int numOfFactories = factoryCount[numOfPlayers];
+<<<<<<< HEAD
         for(int i = 0; i < numOfFactories; i++){
             factories.add(new Factory(bag));
         }
@@ -51,6 +60,11 @@ public class Game implements GameInterface {
            // factories.add(new Factory());
         }
 
+=======
+        for (int i = 0; i < numOfFactories; i++) {
+            factories.add(new Factory(bag));
+        }
+>>>>>>> b834ed97e2681dff99ed1e5e4ccff5423557986e
     }
 
     public int getCurrentPLayer() {
@@ -62,7 +76,7 @@ public class Game implements GameInterface {
         return false;
     }
 
-    private void endRound () {
+    private void endRound() {
         boolean gameFinished = false;
         for (Board board : playerBoards) {
             if (board.finishRound() == FinishRoundResult.GAME_FINISHED) {
@@ -76,9 +90,8 @@ public class Game implements GameInterface {
     }
 
     private void endGame() {
-        for (GameObserver observer : observers) {
-            observer.notifyEverybody("Game finished!");
-        }
+        GameObserver gameObserver = new GameObserver();
+        gameObserver.notifyEverybody("Game is finished!");
 
         Points winnerPoints = new Points(0);
         for (int i = 0; i < playerBoards.size(); i++) {
@@ -87,12 +100,9 @@ public class Game implements GameInterface {
                 winnerPoints = new Points(playerBoards.get(i).points.getValue());
                 winner = defaultNames[i];
             }
-            for (GameObserver observer : observers) {
-                observer.notifyEverybody(defaultNames[i] + "'s score is: " + playerBoards.get(i).points.getValue() + ".");
-            }
+            gameObserver.notifyEverybody(defaultNames[i] + "'s score is: " + playerBoards.get(i).points.getValue() + ".");
+
         }
-        for (GameObserver observer : observers) {
-            observer.notifyEverybody("Winner is " + winner + "! Winner's score is : " + winnerPoints.getValue() + ".");
-        }
+        gameObserver.notifyEverybody("Winner is " + winner + "! Winner's score is : " + winnerPoints.getValue() + ".");
     }
 }
