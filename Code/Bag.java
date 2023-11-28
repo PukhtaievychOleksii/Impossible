@@ -18,13 +18,7 @@ public class Bag {
     }
 <<<<<<< HEAD
 =======
-<<<<<<< HEAD
 
-
-
-=======
-<<<<<<< HEAD
->>>>>>> d893639a03e6eb94f43cc647a39e2ff52f313b28
      /*   List<Tile> bagList = new ArrayList<>(bag);
         Collections.shuffle(bagList);
         bag = new ArrayDeque<>(bagList);
@@ -34,12 +28,10 @@ public class Bag {
      Сначала создай лист на основе декью а потом можно будет мешать. я пределала
      проверь 16-18 строчку*/
 <<<<<<< HEAD
+        >>>>>>> 9f657a6140b680d1667b23546556888cab0b1b07
 =======
-=======
-
->>>>>>> b834ed97e2681dff99ed1e5e4ccff5423557986e
->>>>>>> f955a926cef94962dba504a3141a40aff7e4eab3
->>>>>>> d893639a03e6eb94f43cc647a39e2ff52f313b28
+>>>>>>> 9f657a6140b680d1667b23546556888cab0b1b07
+>>>>>>> 330c35b9da70eda6837c26375d7cc3e6c429d9ec
     public ArrayList<Tile> take(int count){
         ArrayList<Tile> taken = new ArrayList<>();
         for(int i = 0; i < count; i++){

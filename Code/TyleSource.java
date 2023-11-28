@@ -1,7 +1,6 @@
 package Code;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class TyleSource {
     protected ArrayList<Tile> sourceTiles;
@@ -14,7 +13,9 @@ public class TyleSource {
         for(Tile t : sourceTiles){
             if(tile.equals(t)){
                 oneColorTiles.add(t);
-                sourceTiles.remove(t);
+                //TODO:
+                //одночасно видаляєш з масиву
+              //  sourceTiles.remove(t);
             }
         }
         return oneColorTiles;

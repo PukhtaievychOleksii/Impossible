@@ -15,10 +15,10 @@ public class Factory extends TyleSource{
     @Override
     public void startNewRound(){
         if (bag.sizeOfBag() >= 4) {
-            factoryTiles = bag.take(4);
+            sourceTiles = bag.take(4);
         }
         else{
-            factoryTiles = bag.take(bag.sizeOfBag());
+            sourceTiles = bag.take(bag.sizeOfBag());
         }
     }
 
@@ -36,6 +36,6 @@ public class Factory extends TyleSource{
         return toReturn;
     }
     public int sizeOfFactory(){
-        return factoryTiles.size();
+        return sourceTiles.size();
     }
 }
