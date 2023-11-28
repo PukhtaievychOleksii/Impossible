@@ -37,3 +37,4 @@ Send your solution to [lukotka.pts@gmail.com](lukotka.pts@gmail.com). The deadli
 Send the solution to me either as compressed folders containing the whole repository (including the hidden git files) or as a link to private repository with read access granted (GitHub handle `relatko`). Attach a link to the public repository, where you and your team built the common part of the project. 
 
 
+  

@@ -3,16 +3,20 @@ package Code;
 import Code.Interfaces.GameInterface;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Game implements GameInterface {
-    private int numOfPlayers;
-    private int curPlayer;
+
     private Bag bag;
     private ArrayList<Board> playerBoards;
-    private String winner;
-    private ArrayList<Factory> factories;
+
+    private String[] playerNames;
 
     private TableArea tableArea;
+
+    private GameObserver gameObserver;
+
+    private int curPlayer;
 
     private static final String[] defaultNames = {"Player 1", "Player 2", "Player 3", "Player 4"};
     private static final int[] factoryCount = {-1, -1, 5, 7, 9};
@@ -21,108 +25,84 @@ public class Game implements GameInterface {
         this(numOfplayers, defaultNames);
     }
 
-    public Game(int numOfPlayers, String[] nameOfPlayers) {
+    public Game(int numOfPlayers, String[] playerNames) {
         if (numOfPlayers < 2 || numOfPlayers > 4) {
             throw new IllegalArgumentException("Number of players must be 2-4.");
         }
-        if (nameOfPlayers.length < numOfPlayers) {
-            throw new IllegalArgumentException("Not enough names for the given number of players");
+        if (playerNames.length != numOfPlayers) {
+            throw new IllegalArgumentException("Not enough/Too many names for the given number of players");
         }
-
-        this.numOfPlayers = numOfPlayers;
-        this.winner = "none";
-        this.playerBoards = new ArrayList<Board>();
-        this.bag = new Bag();
-        this.factories = new ArrayList<>();
-<<<<<<< HEAD
-//        this.tableArea = new TableArea();
-        //this.tableArea = new TableArea();
-=======
-<<<<<<< HEAD
-        //this.observers = new ArrayList<>();
-=======
-<<<<<<< HEAD
-        this.observers = new ArrayList<>();
-<<<<<<< HEAD
-//        this.tableArea = new TableArea();
-=======
->>>>>>> d893639a03e6eb94f43cc647a39e2ff52f313b28
-        //this.tableArea = new TableArea();
-        //this.tableArea = new TableArea();
-<<<<<<< HEAD
-        //this.observers = new ArrayList<>();
-        //this.tableArea = new TableArea();
-=======
->>>>>>> 87266292d4aeea80ab0b70dc586b6e855905476d
->>>>>>> b834ed97e2681dff99ed1e5e4ccff5423557986e
->>>>>>> f955a926cef94962dba504a3141a40aff7e4eab3
->>>>>>> d893639a03e6eb94f43cc647a39e2ff52f313b28
->>>>>>> 4552d69acf0d2427b3d8259bd653ab28d7842525
-
+        this.playerNames = playerNames;
         curPlayer = (int) (Math.random() * numOfPlayers);
-
+        this.bag = new Bag();
+        int numOfFactories = factoryCount[numOfPlayers];
+        this.tableArea = new TableArea(numOfFactories);
+        this.playerBoards = new ArrayList<Board>();
         for (int i = 0; i < numOfPlayers; i++) {
             playerBoards.add(i, new Board());
         }
-        int numOfFactories = factoryCount[numOfPlayers];
-        for(int i = 0; i < numOfFactories; i++){
-            factories.add(new Factory(bag));
-        }
-        for (int i = 0; i < numOfFactories; i++) {
-<<<<<<< HEAD
-            factories.add(new Factory(bag));
-        }
-
-=======
-           // factories.add(new Factory());
-        }
-
-        for (int i = 0; i < numOfFactories; i++) {
-            factories.add(new Factory(bag));
-        }
-<<<<<<< HEAD
-=======
->>>>>>> b834ed97e2681dff99ed1e5e4ccff5423557986e
->>>>>>> f955a926cef94962dba504a3141a40aff7e4eab3
->>>>>>> d893639a03e6eb94f43cc647a39e2ff52f313b28
+        gameObserver = new GameObserver();
     }
 
     public int getCurrentPLayer() {
         return curPlayer;
     }
 
+    public void setGameObserver(GameObserver gameObserver){
+        this.gameObserver = gameObserver;
+    }
     @Override
     public boolean take(int playerId, int sourceId, int idx, int destinationIdx) {
-        return false;
+        if(playerId < 0 || playerId >= playerBoards.size()){
+            throw new IllegalArgumentException("No such player found");
+        }
+        if(!tableArea.sourceExists(sourceId, idx)){
+            return false;
+        }
+
+        // make a move
+        Board playerBoard = playerBoards.get(playerId);
+        ArrayList<Tile> takenTiles = tableArea.take(sourceId,idx);
+        if(playerBoard.destinationExists(playerId)){
+            playerBoard.put(destinationIdx, takenTiles);
+        } else{
+            playerBoard.getFloor().put(takenTiles);
+        }
+
+        //restart round if needed
+       manageRounds();
+        return true;
     }
 
-    private void endRound() {
-        boolean gameFinished = false;
-        for (Board board : playerBoards) {
-            if (board.finishRound() == FinishRoundResult.GAME_FINISHED) {
-                gameFinished = true;
-                break;
+    private void manageRounds(){
+        if(tableArea.isRoundEnd()){
+            boolean isGameOver = false;
+            tableArea.startNewRound();
+            for(Board playerBoard: playerBoards){
+                FinishRoundResult roundResult = playerBoard.finishRound();
+                if(roundResult.equals(FinishRoundResult.GAME_FINISHED)) isGameOver = true;
             }
-        }
-        if (gameFinished) {
-            endGame();
+
+            if(isGameOver) endGame();
         }
     }
+
 
     private void endGame() {
-        GameObserver gameObserver = new GameObserver();
         gameObserver.notifyEverybody("Game is finished!");
 
-        Points winnerPoints = new Points(0);
+        String winnerName = "nobody";
+        int winnerPoints = 0;
         for (int i = 0; i < playerBoards.size(); i++) {
-            playerBoards.get(i).endGame();
-            if (winnerPoints.getValue() < playerBoards.get(i).points.getValue()) {
-                winnerPoints = new Points(playerBoards.get(i).points.getValue());
-                winner = defaultNames[i];
+            Board playerBoard = playerBoards.get(i);
+            playerBoard.endGame();
+            if (playerBoard.points.getValue() > winnerPoints) {
+                winnerPoints = playerBoard.points.getValue();
+                winnerName = playerNames[i];
             }
-            gameObserver.notifyEverybody(defaultNames[i] + "'s score is: " + playerBoards.get(i).points.getValue() + ".");
+            gameObserver.notifyEverybody(playerNames[i] + "'s score is: " + playerBoard.points.getValue() + ".");
 
         }
-        gameObserver.notifyEverybody("Winner is " + winner + "! Winner's score is : " + winnerPoints.getValue() + ".");
+        gameObserver.notifyEverybody("Winner is " + winnerName + "! Winner's score is : " + winnerPoints + ".");
     }
 }

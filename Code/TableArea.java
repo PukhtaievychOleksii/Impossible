@@ -14,16 +14,28 @@ public class TableArea {
             index++;
         }
     }
+
+    public boolean sourceExists(int sourceIdx, int idx){
+        if(sourceIdx < 0 || sourceIdx > factoriesOnArea.size()) return false;
+        TyleSource source = getTileSource(sourceIdx);
+        if(idx < 0 || idx >= source.sourceTiles.size()) return false;
+        return true;
+    }
     public ArrayList<Tile> take(int sourceId, int idx){
+        TyleSource source = getTileSource(sourceId);
+        return source.take(idx);
+    }
+
+    private TyleSource getTileSource(int sourceId){
         TyleSource source;
         if(sourceId == 0){
             source = tableCenter;
         }
         else {
-          source = factoriesOnArea.get(sourceId - 1);
+            source = factoriesOnArea.get(sourceId - 1);
         }
 
-        return source.take(idx);
+        return source;
     }
     public boolean isRoundEnd(){
         int count = 0;

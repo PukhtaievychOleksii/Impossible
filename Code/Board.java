@@ -32,11 +32,18 @@ public class Board {
             wallLines.add(new WallLine(tileTypesSequenceWall.get(i)));
             patternLines.add(new PatternLine(i + 1, floor, wallLines.get(i)));
         }
-        setNeighbours();
+        setWallNeighbours();
 
     }
 
-    private void setNeighbours(){
+    public boolean destinationExists(int index){
+        return index >= 0 && index < patternLines.size();
+    }
+
+    public Floor getFloor(){
+        return floor;
+    }
+    private void setWallNeighbours(){
         wallLines.get(0).setDownWall(wallLines.get(1));
         for(int i = 1; i < 4; i++){
             wallLines.get(i).setUpWall(wallLines.get(i - 1));
