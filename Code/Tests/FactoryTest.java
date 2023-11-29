@@ -31,12 +31,12 @@ public class FactoryTest {
         assertEquals("Two red tiles should be taken.", 2, factory1.take(0).size());
         assertEquals("Two green left.", 2, factory1.sizeOfFactory());
 
-        assertEquals("Two green tiles should be taken.", 2, factory1.take(3).size());
+        assertEquals("Two green tiles should be taken.", 2, factory1.take(0).size());
         assertEquals("No tiles left", 0, factory1.sizeOfFactory());
 
         tiles = new ArrayList<>(Arrays.asList(Tile.BLUE, Tile.BLUE, Tile.BLUE, Tile.BLUE));
         Factory factory2 = new Factory(tiles);
-        assertEquals("Four black tiles should be taken.", 4, factory2.take(0).size());
+        assertEquals("Four blue tiles should be taken.", 4, factory2.take(0).size());
         assertEquals("No tiles left.", 0, factory2.sizeOfFactory());
 
         tiles = new ArrayList<>(Arrays.asList(Tile.YELLOW, Tile.YELLOW, Tile.YELLOW, Tile.GREEN));
