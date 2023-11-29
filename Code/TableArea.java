@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TableArea {
     private ArrayList<TyleSource> factoriesOnArea;
-    private TableCenter tableCenter;
+    public TableCenter tableCenter;
     public TableArea(int numOfFactories){
         tableCenter = new TableCenter();
         factoriesOnArea = new ArrayList<>();
@@ -14,7 +14,11 @@ public class TableArea {
             index++;
         }
     }
+    public TableAreaForTesting(){
+
+    }
     public ArrayList<Tile> take(int sourceId, int idx){
+        if(!sourceExists(sourceId, idx)) return new ArrayList<>();
         TyleSource source = getTyleSource(sourceId);
         return source.take(idx);
     }
@@ -33,7 +37,7 @@ public class TableArea {
         }
         tableCenter.startNewRound();
     }
-    public boolean sourceExists(int sourceId,int idx){
+    private boolean sourceExists(int sourceId,int idx){
         if(sourceId < 0 || sourceId > factoriesOnArea.size()) return false;
         TyleSource tyleSource = getTyleSource(sourceId);
         if(idx < 0 || idx >= tyleSource.getSourceTiles().size()) return false;
