@@ -41,10 +41,10 @@ public class FactoryTest {
 
         tiles = new ArrayList<>(Arrays.asList(Tile.YELLOW, Tile.YELLOW, Tile.YELLOW, Tile.GREEN));
         Factory factory3 = new Factory(tiles);
-        assertEquals("Only one green tile should be taken.", 1, factory2.take(3).size());
-        assertEquals("Three should be left.", 3, factory2.sizeOfFactory());
-        assertEquals("Three yellow tiles should be taken.", 3, factory2.take(0).size());
-        assertEquals("No tiles left.", 0, factory2.sizeOfFactory());
+        assertEquals("Only one green tile should be taken.", 1, factory3.take(3).size());
+        assertEquals("Three should be left.", 3, factory3.sizeOfFactory());
+        assertEquals("Three yellow tiles should be taken.", 3, factory3.take(0).size());
+        assertEquals("No tiles left.", 0, factory3.sizeOfFactory());
 
 
     }
