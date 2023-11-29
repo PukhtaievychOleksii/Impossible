@@ -15,6 +15,7 @@ public class PatternLine {
         this.floor = floor;
         this.wallLine = relatedWallLine;
         this.usedTyles = usedTyles;
+        presentTiles = new ArrayList<>();
         resetLine();
     }
 
