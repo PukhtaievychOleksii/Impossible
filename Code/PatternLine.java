@@ -1,6 +1,7 @@
 package Code;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class PatternLine {
@@ -21,11 +22,9 @@ public class PatternLine {
 
     public void resetLine(){
         for(Tile tile: presentTiles){
-            ArrayList<Tile> tiles = new ArrayList<>();
-            tiles.add(tile);
-            usedTyles.give(tiles);
-            presentTiles.remove(tile);
+            usedTyles.give(new ArrayList<>(Arrays.asList(tile)));
         }
+        presentTiles = new ArrayList<>();
     }
 
     public boolean isLineFull(){
