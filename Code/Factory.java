@@ -13,6 +13,7 @@ public class Factory extends TyleSource{
     }
     public Factory(ArrayList<Tile> tiles){
         sourceTiles = tiles;
+        this.tableCenter = new TableCenter();
     }
 
 
