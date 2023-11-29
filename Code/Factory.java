@@ -11,7 +11,9 @@ public class Factory extends TyleSource{
         this.bag = bag;
         this.tableCenter = tableCenter;
     }
-
+    public Factory(ArrayList<Tile> tiles){
+        sourceTiles = tiles;
+    }
 
 
     @Override

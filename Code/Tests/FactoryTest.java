@@ -6,6 +6,9 @@ import Code.TableCenter;
 import Code.Tile;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.junit.Assert.assertEquals;
 
 public class FactoryTest {
@@ -22,5 +25,12 @@ public class FactoryTest {
         }
         int n = factory.take(0).size();
         assertEquals(count, n);
+
+        ArrayList<Tile> tiles = new ArrayList<>(Arrays.asList(Tile.RED, Tile.RED, Tile.BLACK, Tile.BLACK));
+        Factory factory1 = new Factory(tiles);
+        assertEquals("Two red tiles should be taken", 2, factory1.take(0).size());
+        assertEquals("Two green left.", 2, factory1.sizeOfFactory());
+
+
     }
 }

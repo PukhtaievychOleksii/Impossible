@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e71eec2c-59f6-4c5c-93f6-af51ee937239" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2YkzJ5qoYjQRXPw08d2jzS2Bfbe" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Diana/Desktop/programming/pts/Impossible&quot;
+  }
+}</component>
+  <component name="RunManager" selected="JUnit.FloorTest.test_tiles">
+    <configuration name="BagTest.testTake" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Code" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Code.Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Code.Tests" />
+      <option name="MAIN_CLASS_NAME" value="Code.Tests.BagTest" />
+      <option name="METHOD_NAME" value="testTake" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FactoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Code" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Code.Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Code.Tests" />
+      <option name="MAIN_CLASS_NAME" value="Code.Tests.FactoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FactoryTest.testFactory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Code" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Code.Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Code.Tests" />
+      <option name="MAIN_CLASS_NAME" value="Code.Tests.FactoryTest" />
+      <option name="METHOD_NAME" value="testFactory" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FloorTest.test_tiles" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Code" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Code.Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Code.Tests" />
+      <option name="MAIN_CLASS_NAME" value="Code.Tests.FloorTest" />
+      <option name="METHOD_NAME" value="test_tiles" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.FloorTest.test_tiles" />
+        <item itemvalue="JUnit.FactoryTest" />
+        <item itemvalue="JUnit.FactoryTest.testFactory" />
+        <item itemvalue="JUnit.BagTest.testTake" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e71eec2c-59f6-4c5c-93f6-af51ee937239" name="Changes" comment="" />
+      <created>1701084291041</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701084291041</updated>
+    </task>
+    <servers />
+  </component>
+</project>
