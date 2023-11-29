@@ -3,17 +3,19 @@ package Code;
 import java.util.ArrayList;
 
 public class TableArea {
-    private ArrayList<TyleSource> factoriesOnArea;
+    private ArrayList<Factory> factoriesOnArea;
     private TableCenter tableCenter;
-    public TableArea(int numOfFactories){
+    public TableArea(int numOfFactories, Bag bag){
         tableCenter = new TableCenter();
         factoriesOnArea = new ArrayList<>();
         int index = 0;
         while(index < numOfFactories){
-            factoriesOnArea.add(new TyleSource());
+            factoriesOnArea.add(new Factory(bag, tableCenter));
             index++;
         }
     }
+
+
     public ArrayList<Tile> take(int sourceId, int idx){
         TyleSource source = getTyleSource(sourceId);
         return source.take(idx);

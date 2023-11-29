@@ -31,7 +31,7 @@ public class Game implements GameInterface {
         curPlayer = (int) (Math.random() * numOfPlayers);
         this.bag = new Bag();
         int numOfFactories = factoriesCount[numOfPlayers];
-        this.tableArea = new TableArea(numOfFactories);
+        this.tableArea = new TableArea(numOfFactories, bag);
         this.playerBoards = new ArrayList<Board>();
         for (int i = 0; i < numOfPlayers; i++) {
             playerBoards.add(i, new Board(bag.getUsedTiles()));

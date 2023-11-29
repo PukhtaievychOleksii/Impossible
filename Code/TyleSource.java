@@ -13,10 +13,10 @@ public class TyleSource {
         for(Tile t : sourceTiles){
             if(tile.equals(t)){
                 oneColorTiles.add(t);
-                //TODO:
-                //одночасно видаляєш з масиву
-              //  sourceTiles.remove(t);
             }
+        }
+        for(Tile t : oneColorTiles){
+            sourceTiles.remove(t);
         }
         return oneColorTiles;
     }

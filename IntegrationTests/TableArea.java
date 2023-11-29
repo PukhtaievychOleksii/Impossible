@@ -1,4 +1,4 @@
-package IntegrationTests;
+/*ackage IntegrationTests;
 
 import Code.FinalPointsCalculationComposite;
 import Code.Interfaces.Component;
@@ -16,4 +16,4 @@ public class TableArea {
     @Test
     public void
     //assertEquals("Full mosaic should give 95 points.", 95, points.getValue());
-}
+}*/

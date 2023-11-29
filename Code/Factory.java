@@ -12,6 +12,8 @@ public class Factory extends TyleSource{
         this.tableCenter = tableCenter;
     }
 
+
+
     @Override
     public void startNewRound(){
         if (bag.sizeOfBag() >= 4) {
