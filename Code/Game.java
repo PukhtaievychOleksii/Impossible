@@ -34,7 +34,7 @@ public class Game implements GameInterface {
         this.tableArea = new TableArea(numOfFactories);
         this.playerBoards = new ArrayList<Board>();
         for (int i = 0; i < numOfPlayers; i++) {
-            playerBoards.add(i, new Board());
+            playerBoards.add(i, new Board(bag.getUsedTiles()));
         }
         gameObserver = new GameObserver();
 

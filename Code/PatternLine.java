@@ -10,16 +10,14 @@ public class PatternLine {
     private WallLine wallLine;
     private UsedTyles usedTyles;
 
-    public PatternLine(int capacity, Floor floor, WallLine relatedWallLine){
+    public PatternLine(int capacity, Floor floor, WallLine relatedWallLine, UsedTyles usedTyles){
         this.capacity = capacity;
         this.floor = floor;
         this.wallLine = relatedWallLine;
+        this.usedTyles = usedTyles;
         resetLine();
     }
 
-    private void SetUsedTyles(UsedTyles usedTyles){
-        this.usedTyles = usedTyles;
-    }
     public void resetLine(){
         for(Tile tile: presentTiles){
             ArrayList<Tile> tiles = new ArrayList<>();

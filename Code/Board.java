@@ -15,7 +15,7 @@ public class Board {
     private ArrayList<Points> floorLineScores;
     private GameFinished gameResult;
 
-    public Board() {
+    public Board(UsedTyles usedTyles) {
         points = new Points(0);
         this.floorLineScores = new ArrayList<>();
         this.gameResult = new GameFinished();
@@ -26,11 +26,11 @@ public class Board {
         this.patternLines = new ArrayList<>();
 
         fillFlorLineScores();
-        this.floor = new Floor(new ArrayList<>(), floorLineScores);
+        this.floor = new Floor(usedTyles, floorLineScores);
 
         for (int i = 0; i < 5; i++) {
             wallLines.add(new WallLine(tileTypesSequenceWall.get(i)));
-            patternLines.add(new PatternLine(i + 1, floor, wallLines.get(i)));
+            patternLines.add(new PatternLine(i + 1, floor, wallLines.get(i), usedTyles));
         }
         setWallNeighbours();
 

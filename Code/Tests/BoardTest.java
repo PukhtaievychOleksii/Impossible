@@ -2,7 +2,8 @@ package Code.Tests;
 
 import Code.Board;
 import Code.Tile;
-import org.junit.jupiter.api.Test;
+import Code.UsedTyles;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +15,8 @@ import static org.junit.Assert.assertEquals;
 public class BoardTest {
     @Test
     public void testBoard() {
-        Board board = new Board();
+        UsedTyles usedTyles = new UsedTyles();
+        Board board = new Board(usedTyles);
         ArrayList<Tile> list =  new ArrayList<>(Arrays.asList(Tile.RED));
 
         board.put(0, list);

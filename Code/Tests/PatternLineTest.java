@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class PatternLineTest {
     @Test
     public void patternLineTest(){
-        ArrayList<Tile> usedTiles = new ArrayList<>();
+        UsedTyles usedTiles = new UsedTyles();
         ArrayList<Points> pointPattern = new ArrayList<Points>();
         pointPattern.add(new Points(1));
         pointPattern.add(new Points(1));
@@ -20,7 +20,7 @@ public class PatternLineTest {
         Floor floor = new Floor(usedTiles, pointPattern);
         ArrayList<Tile> tiles = new ArrayList<>(Arrays.asList(Tile.RED, Tile.BLACK, Tile.BLUE, Tile.GREEN, Tile.YELLOW));
         WallLine wallLine = new WallLine(tiles);
-        PatternLine patternLine = new PatternLine(5, floor, wallLine);
+        PatternLine patternLine = new PatternLine(5, floor, wallLine, usedTiles);
         ArrayList<Tile> tiles1 = new ArrayList<>(Arrays.asList(Tile.RED,Tile.RED, Tile.RED));
         patternLine.put(tiles1);
 

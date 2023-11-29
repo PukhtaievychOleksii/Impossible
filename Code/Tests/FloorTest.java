@@ -3,6 +3,7 @@ package Code.Tests;
 import Code.Floor;
 import Code.Points;
 import Code.Tile;
+import Code.UsedTyles;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,12 +14,12 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class FloorTest {
-    private ArrayList<Tile> usedTiles;
+    private UsedTyles usedTiles;
     private Floor floor;
 
     @Before
     public void setUp() {
-        usedTiles = new ArrayList<Tile>();
+        usedTiles = new UsedTyles();
         ArrayList<Points> pointPattern = new ArrayList<Points>();
         pointPattern.add(new Points(1));
         pointPattern.add(new Points(2));
@@ -43,7 +44,7 @@ public class FloorTest {
                 7,
                 points.getValue());
         assertArrayEquals(
-                "Used tiles should get the tiles", tiles.toArray(), usedTiles.toArray());
+                "Used tiles should get the tiles", tiles.toArray(), usedTiles.takeAll().toArray());
 
         floor.put(Arrays.asList(Tile.RED));
         floor.put(Arrays.asList(Tile.GREEN));
@@ -58,7 +59,7 @@ public class FloorTest {
         tiles.add(Tile.RED);
         tiles.add(Tile.GREEN);
         assertArrayEquals(
-                "Used tiles should get the tiles", tiles.toArray(), usedTiles.toArray());
+                "Used tiles should get the tiles", tiles.toArray(), usedTiles.takeAll().toArray());
     }
 
 

@@ -6,6 +6,7 @@ import java.util.Stack;
 
 public class Bag {
     private Stack<Tile> bag;
+    private UsedTyles usedTyles;
 
     public Bag(){
         this.bag = new Stack<>();
@@ -15,6 +16,8 @@ public class Bag {
             }
         }
         Collections.shuffle(bag);
+
+        usedTyles = new UsedTyles();
     }
     public ArrayList<Tile> take(int count){
         ArrayList<Tile> taken = new ArrayList<>();
@@ -33,5 +36,9 @@ public class Bag {
             result += tile.toString() + "\n";
         }
         return result;
+    }
+
+    public UsedTyles getUsedTiles() {
+        return usedTyles;
     }
 }
