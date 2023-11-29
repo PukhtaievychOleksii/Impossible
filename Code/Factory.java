@@ -29,7 +29,7 @@ public class Factory extends TyleSource{
         for(Tile tile : sourceTiles){
             if(!toReturn.contains(tile)) {
                 moveToCenter.add(tile);
-                sourceTiles.remove(tile);
+                //sourceTiles.remove(tile);
             }
         }
         tableCenter.add(moveToCenter);

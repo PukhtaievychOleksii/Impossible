@@ -37,4 +37,7 @@ public class TyleSource {
         return result;
     }
 
+    public ArrayList<Tile> getSourceTiles() {
+        return sourceTiles;
+    }
 }
