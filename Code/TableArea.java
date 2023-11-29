@@ -15,14 +15,7 @@ public class TableArea {
         }
     }
     public ArrayList<Tile> take(int sourceId, int idx){
-        TyleSource source;
-        if(sourceId == 0){
-            source = tableCenter;
-        }
-        else {
-            source = factoriesOnArea.get(sourceId - 1);
-        }
-
+        TyleSource source = getTyleSource(sourceId);
         return source.take(idx);
     }
     public boolean isRoundEnd(){
@@ -40,6 +33,12 @@ public class TableArea {
         }
         tableCenter.startNewRound();
     }
+    public boolean sourceExists(int sourceId,int idx){
+        if(sourceId < 0 || sourceId > factoriesOnArea.size()) return false;
+        TyleSource tyleSource = getTyleSource(sourceId);
+        if(idx < 0 || idx >= tyleSource.getSourceTiles().size()) return false;
+        return true;
+    }
     public String state() {
         String result = "";
         for (int i = 0; i < factoriesOnArea.size(); i++) {
@@ -51,5 +50,16 @@ public class TableArea {
             }
         }
         return result;
+    }
+    private TyleSource getTyleSource(int sourceId){
+        TyleSource source;
+        if(sourceId == 0){
+            source = tableCenter;
+        }
+        else {
+            source = factoriesOnArea.get(sourceId - 1);
+        }
+
+        return source;
     }
 }

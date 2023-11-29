@@ -1,30 +1,20 @@
-/*
+
 package Code;
 
 import Code.Interfaces.GameInterface;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Optional;
 
 public class Game implements GameInterface {
 
     private Bag bag;
     private ArrayList<Board> playerBoards;
-
     private String[] playerNames;
-
     private TableArea tableArea;
-    private Optional<GameObserver> gameObserver;
-    //private String winner;
-
-
     private GameObserver gameObserver;
-
     private int curPlayer;
-
     private static final String[] defaultNames = {"Player 1", "Player 2", "Player 3", "Player 4"};
-    private static final int[] factoryCount = {-1, -1, 5, 7, 9};
+    private static final int[] factoriesCount = {-1, -1, 5, 7, 9};
 
     public Game(int numOfplayers) {
         this(numOfplayers, defaultNames);
@@ -40,38 +30,16 @@ public class Game implements GameInterface {
         this.playerNames = playerNames;
         curPlayer = (int) (Math.random() * numOfPlayers);
         this.bag = new Bag();
-        int numOfFactories = factoryCount[numOfPlayers];
+        int numOfFactories = factoriesCount[numOfPlayers];
         this.tableArea = new TableArea(numOfFactories);
         this.playerBoards = new ArrayList<Board>();
         for (int i = 0; i < numOfPlayers; i++) {
             playerBoards.add(i, new Board());
         }
         gameObserver = new GameObserver();
-        if (nameOfPlayers.length != numOfPlayers) {
-            throw new IllegalArgumentException("NotEnough/TooMany names for the given number of players");
-        }
-
-        this.numOfPlayers = numOfPlayers;
-        bag = new Bag();
-        playerBoards = new ArrayList<Board>();
-        gameObserver = Optional.empty();
-
-        int numOfFactories = factoryCount[numOfPlayers];
-        tableArea = new TableArea(numOfFactories);
-
-
-        curPlayer = (int) (Math.random() * numOfPlayers);
-        //create boards
-        for (int i = 0; i < numOfPlayers; i++) {
-            playerBoards.add(i, new Board());
-        }
 
     }
 
-    public void SetGameObserver(GameObserver gameObserver){
-        this.gameObserver = Optional.of(gameObserver);
->>>>>>> 2d258c3b711a3571faa9e514fc79e2c7ef718a03
-    }
 
     public int getCurrentPLayer() {
         return curPlayer;
@@ -80,6 +48,7 @@ public class Game implements GameInterface {
     public void setGameObserver(GameObserver gameObserver){
         this.gameObserver = gameObserver;
     }
+
     @Override
     public boolean take(int playerId, int sourceId, int idx, int destinationIdx) {
         if(playerId < 0 || playerId >= playerBoards.size()){
@@ -99,7 +68,7 @@ public class Game implements GameInterface {
         }
 
         //restart round if needed
-       manageRounds();
+        manageRounds();
         return true;
     }
 
@@ -134,4 +103,4 @@ public class Game implements GameInterface {
         }
         gameObserver.notifyEverybody("Winner is " + winnerName + "! Winner's score is : " + winnerPoints + ".");
     }
-}*/
+}
