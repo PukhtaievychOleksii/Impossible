@@ -3,18 +3,25 @@ package Code;
 import java.util.ArrayList;
 
 public class TableArea {
-    private ArrayList<TyleSource> factoriesOnArea;
+    private ArrayList<Factory> factoriesOnArea;
     public TableCenter tableCenter;
-    public TableArea(int numOfFactories){
+
+    public TableArea(int numOfFactories, Bag bag){
         tableCenter = new TableCenter();
         factoriesOnArea = new ArrayList<>();
         int index = 0;
         while(index < numOfFactories){
-            factoriesOnArea.add(new TyleSource());
+            factoriesOnArea.add(new Factory(bag, tableCenter));
             index++;
         }
     }
-    public TableAreaForTesting(){
+
+    public TableArea(ArrayList<ArrayList<Tile>> factories){
+        this.tableCenter = new TableCenter();
+        factoriesOnArea = new ArrayList<>();
+        for(ArrayList<Tile> tiles : factories){
+            factoriesOnArea.add(new Factory(tiles, tableCenter));
+        }
 
     }
     public ArrayList<Tile> take(int sourceId, int idx){
@@ -24,7 +31,7 @@ public class TableArea {
     }
     public boolean isRoundEnd(){
         int count = 0;
-        for(TyleSource source : factoriesOnArea){
+        for(Factory source : factoriesOnArea){
             if (source.isEmpty()){
                 count ++;
             }

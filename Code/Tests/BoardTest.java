@@ -35,4 +35,9 @@ public class BoardTest {
         board.finishRound();
         assertEquals("Game should be finished", GAME_FINISHED, board.finishRound());
     }
+
+    @Test
+    public void testBoardIntegrationWithPatterLine(){
+
+    }
 }
