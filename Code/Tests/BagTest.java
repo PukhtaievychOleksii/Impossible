@@ -53,6 +53,6 @@ public class BagTest {
         assertEquals(Tile.BLACK, takenFromBag2.get(1), "Incorrect tile taken from Bag1" );
         assertEquals(Tile.RED, takenFromBag2.get(2), "Incorrect tile taken from Bag1" );
 
-        
+
     }
 }
