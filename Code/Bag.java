@@ -19,6 +19,10 @@ public class Bag {
 
         usedTyles = new UsedTyles();
     }
+    public Bag(Stack<Tile> tiles){
+        bag = tiles;
+    }
+
     public ArrayList<Tile> take(int count){
         ArrayList<Tile> taken = new ArrayList<>();
         for(int i = 0; i < count; i++){

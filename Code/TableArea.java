@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class TableArea {
     private ArrayList<Factory> factoriesOnArea;
-    private TableCenter tableCenter;
+    public TableCenter tableCenter;
+
     public TableArea(int numOfFactories, Bag bag){
         tableCenter = new TableCenter();
         factoriesOnArea = new ArrayList<>();
@@ -15,14 +16,22 @@ public class TableArea {
         }
     }
 
+    public TableArea(ArrayList<ArrayList<Tile>> factories){
+        this.tableCenter = new TableCenter();
+        factoriesOnArea = new ArrayList<>();
+        for(ArrayList<Tile> tiles : factories){
+            factoriesOnArea.add(new Factory(tiles, tableCenter));
+        }
 
+    }
     public ArrayList<Tile> take(int sourceId, int idx){
+        if(!sourceExists(sourceId, idx)) return new ArrayList<>();
         TyleSource source = getTyleSource(sourceId);
         return source.take(idx);
     }
     public boolean isRoundEnd(){
         int count = 0;
-        for(TyleSource source : factoriesOnArea){
+        for(Factory source : factoriesOnArea){
             if (source.isEmpty()){
                 count ++;
             }
@@ -35,7 +44,7 @@ public class TableArea {
         }
         tableCenter.startNewRound();
     }
-    public boolean sourceExists(int sourceId,int idx){
+    private boolean sourceExists(int sourceId,int idx){
         if(sourceId < 0 || sourceId > factoriesOnArea.size()) return false;
         TyleSource tyleSource = getTyleSource(sourceId);
         if(idx < 0 || idx >= tyleSource.getSourceTiles().size()) return false;

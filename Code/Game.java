@@ -54,13 +54,12 @@ public class Game implements GameInterface {
         if(playerId < 0 || playerId >= playerBoards.size()){
             throw new IllegalArgumentException("No such player found");
         }
-        if(!tableArea.sourceExists(sourceId, idx)){
-            return false;
-        }
+
 
         // make a move
         Board playerBoard = playerBoards.get(playerId);
         ArrayList<Tile> takenTiles = tableArea.take(sourceId,idx);
+        if(takenTiles.isEmpty()) return false;
         if(playerBoard.destinationExists(playerId)){
             playerBoard.put(destinationIdx, takenTiles);
         } else{
