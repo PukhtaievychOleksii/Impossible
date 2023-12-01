@@ -136,9 +136,20 @@ public class BoardTest {
     }
     @Test
     public void testBoardIntegrationWithPatterLine(){
-        ArrayList<PatternLine> patternLines = board.getPatterLines();
-        // put blue tyles on 2 patternLine
-        
 
+        ArrayList<Tile> blueTiles = new ArrayList<>();
+        blueTiles.add(Tile.BLUE);
+        blueTiles.add(Tile.BLUE);
+
+        // put Two Blue tyles on the Second patternLine
+        board.put(2, blueTiles);
+
+        // get second patternLine to check if there are exactly Two tiles on it & colour is Blue
+        ArrayList<PatternLine> patternLines = board.getPatterLines();
+        int count = patternLines.get(2).getPresentTyles().size();
+        String color = patternLines.get(2).getPresentTyles().get(0).toString();
+
+        assertEquals("Amount of tiles on the patternLine should be 2", count, 2);
+        assertEquals("The colour of tiles should be Blue", "B", color);
     }
 }
