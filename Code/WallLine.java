@@ -66,12 +66,15 @@ public class WallLine {
             else break;
             walker++;
         }
+
         //go left wall
-        walker = index - 1;
-        while(walker > 0){
-            if(presentTiles.get(walker).isPresent()) horSeq++;
-            else break;
-            walker--;
+        if(index > 0) {
+            walker = index - 1;
+            while (walker >= 0) {
+                if (presentTiles.get(walker).isPresent()) horSeq++;
+                else break;
+                walker--;
+            }
         }
 
         int vertSeq = 1;
