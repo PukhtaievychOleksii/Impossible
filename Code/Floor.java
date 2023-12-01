@@ -39,4 +39,8 @@ public final class Floor {
         tiles = new ArrayList<Tile>();
         return new Points(sum);
     }
+
+    public boolean isEmpty(){
+        return tiles.isEmpty();
+    }
 }

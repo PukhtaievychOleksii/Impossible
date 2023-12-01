@@ -62,7 +62,7 @@ public class TableArea {
         }
         return result;
     }
-    private TyleSource getTyleSource(int sourceId){
+    public TyleSource getTyleSource(int sourceId){
         TyleSource source;
         if(sourceId == 0){
             source = tableCenter;

@@ -38,11 +38,22 @@ public class Game implements GameInterface {
         }
         gameObserver = new GameObserver();
 
+        startNewRound();
     }
 
 
     public int getCurrentPLayer() {
         return curPlayer;
+    }
+
+    public ArrayList<Board> getBoards(){return playerBoards;}
+
+    public TableArea getTableArea(){
+        return tableArea;
+    }
+
+    public Bag getBag(){
+        return bag;
     }
 
     public void setGameObserver(GameObserver gameObserver){
@@ -60,7 +71,7 @@ public class Game implements GameInterface {
         Board playerBoard = playerBoards.get(playerId);
         ArrayList<Tile> takenTiles = tableArea.take(sourceId,idx);
         if(takenTiles.isEmpty()) return false;
-        if(playerBoard.destinationExists(playerId)){
+        if(playerBoard.destinationExists(destinationIdx)){
             playerBoard.put(destinationIdx, takenTiles);
         } else{
             playerBoard.getFloor().put(takenTiles);
@@ -73,15 +84,19 @@ public class Game implements GameInterface {
 
     private void manageRounds(){
         if(tableArea.isRoundEnd()){
-            boolean isGameOver = false;
-            tableArea.startNewRound();
-            for(Board playerBoard: playerBoards){
-                FinishRoundResult roundResult = playerBoard.finishRound();
-                if(roundResult.equals(FinishRoundResult.GAME_FINISHED)) isGameOver = true;
-            }
-
-            if(isGameOver) endGame();
+           startNewRound();
         }
+    }
+
+    public void startNewRound(){
+        boolean isGameOver = false;
+        tableArea.startNewRound();
+        for(Board playerBoard: playerBoards){
+            FinishRoundResult roundResult = playerBoard.finishRound();
+            if(roundResult.equals(FinishRoundResult.GAME_FINISHED)) isGameOver = true;
+        }
+
+        if(isGameOver) endGame();
     }
 
 

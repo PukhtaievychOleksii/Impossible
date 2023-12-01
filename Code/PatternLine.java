@@ -68,5 +68,9 @@ public class PatternLine {
         return toReturn;
     }
 
+    public boolean isEmpty(){
+        return presentTiles.isEmpty();
+    }
+
 
 }

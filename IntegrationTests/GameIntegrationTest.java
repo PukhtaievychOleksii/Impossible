@@ -1,12 +1,12 @@
 package IntegrationTests;
 
-import Code.Game;
-import Code.GameObserver;
+import Code.*;
 import IntegrationTests.HelpClasses.TestUser;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class GameIntegrationTest {
@@ -35,16 +35,66 @@ public class GameIntegrationTest {
 
     @Test
     public void testIntegrationWithBoard(){
+        //create Game
+        Game game = new Game();
+        //create Board
+        ArrayList<Board> boards = game.getBoards();
+        //test Integration
+        boolean isTakeCorrect = true;
+        //correct take
+        for(int i = 0; i < boards.size(); i++){
+            int correct_destination = 0;
+            isTakeCorrect = game.take(i,i,0, correct_destination);
+            assertTrue("Take should be but was not accomplished", isTakeCorrect);
+            Board board = boards.get(i);
+            assertFalse("Tiles were not put on the Board with right input",board.areLinesEmpty());
+        }
 
+        game.startNewRound();
+        //incorrect take
+        for(int i = 0; i < boards.size(); i++){
+            final int incorrect_destination = 1000;
+            isTakeCorrect = game.take(i,1,0, incorrect_destination);
+            assertTrue("Take should be but was not accomplished",isTakeCorrect);
+            Board board = boards.get(i);
+            assertTrue("Incorrect take added to Lines",board.areLinesEmpty());
+            Floor floor = board.getFloor();
+            assertFalse("Floor was empty after incorrect take", floor.isEmpty());
+        }
     }
 
     @Test
     public void testIntegrationWithTableArea(){
-
+        //create Game
+        Game game = new Game();
+        //create TableArea
+        TableArea tableArea = game.getTableArea();
+        //test integration
+        final int sourceId = 1;
+        boolean isTakeCorrect;
+        //correct input
+        TyleSource tyleSource = tableArea.getTyleSource(sourceId);
+        int initialSize = tyleSource.getSourceTiles().size();
+        isTakeCorrect = game.take(0, sourceId, 0, 0);
+        assertTrue("Incorrect take with correct input", isTakeCorrect);
+        int currentSize = tyleSource.getSourceTiles().size();
+        assertTrue("Tiles were not taken from the source", initialSize > currentSize);
+        //incorrect input
+        final int incorrectSourceId = 1000;
+        isTakeCorrect = game.take(0, incorrectSourceId, 0, 0);
+        assertFalse("Tiles were taken with incorrect input",isTakeCorrect);
     }
 
     @Test
     public void testIntegrationWithBag(){
+        //create Game
+        Game game = new Game();
+        //create Bag
+        Bag bag = game.getBag();
 
+        int initialSize = bag.sizeOfBag();
+        game.startNewRound();
+        int currentSize = bag.sizeOfBag();
+        assertTrue("Tiles were not taken from Bag on Restart", initialSize > currentSize);
     }
 }

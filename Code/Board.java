@@ -122,4 +122,11 @@ public class Board {
         return score + pLines + wLines ;
     }
 
+    public boolean areLinesEmpty(){
+        for(PatternLine patternLine: patternLines){
+            if(!patternLine.isEmpty()) return false;
+        }
+        return true;
+    }
+
 }
