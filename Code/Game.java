@@ -16,8 +16,8 @@ public class Game implements GameInterface {
     private static final String[] defaultNames = {"Player 1", "Player 2", "Player 3", "Player 4"};
     private static final int[] factoriesCount = {-1, -1, 5, 7, 9};
 
-    public Game(int numOfplayers) {
-        this(numOfplayers, defaultNames);
+    public Game() {
+        this(4, defaultNames);
     }
 
     public Game(int numOfPlayers, String[] playerNames) {
@@ -85,7 +85,7 @@ public class Game implements GameInterface {
     }
 
 
-    private void endGame() {
+    public void endGame() {
         gameObserver.notifyEverybody("Game is finished!");
 
         String winnerName = "nobody";
