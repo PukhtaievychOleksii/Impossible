@@ -20,6 +20,10 @@ public class PatternLine {
         resetLine();
     }
 
+    public ArrayList<Tile> getPresentTyles(){
+        return presentTiles;
+    }
+
     public void resetLine(){
         for(Tile tile: presentTiles){
             usedTyles.give(new ArrayList<>(Arrays.asList(tile)));
