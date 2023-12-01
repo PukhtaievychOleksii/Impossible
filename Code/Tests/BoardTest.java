@@ -136,7 +136,9 @@ public class BoardTest {
     }
     @Test
     public void testBoardIntegrationWithPatterLine(){
-
+        ArrayList<PatternLine> patternLines = board.getPatterLines();
+        // put blue tyles on 2 patternLine
+        
 
     }
 }

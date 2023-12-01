@@ -35,7 +35,9 @@ public class Board {
         setWallNeighbours();
 
     }
-
+    public ArrayList<PatternLine> getPatterLines(){
+        return patternLines;
+    }
     public boolean destinationExists(int index){
         return index >= 0 && index < patternLines.size();
     }
