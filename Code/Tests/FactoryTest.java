@@ -27,7 +27,7 @@ public class FactoryTest {
         assertEquals(count, n);
 
         ArrayList<Tile> tiles = new ArrayList<>(Arrays.asList(Tile.RED, Tile.RED, Tile.BLACK, Tile.BLACK));
-        Factory factory1 = new Factory(tiles);
+        Factory factory1 = new Factory(tiles, tableCenter);
         assertEquals("Two red tiles should be taken.", 2, factory1.take(0).size());
         assertEquals("Two green left.", 2, factory1.sizeOfFactory());
 
@@ -35,12 +35,12 @@ public class FactoryTest {
         assertEquals("No tiles left", 0, factory1.sizeOfFactory());
 
         tiles = new ArrayList<>(Arrays.asList(Tile.BLUE, Tile.BLUE, Tile.BLUE, Tile.BLUE));
-        Factory factory2 = new Factory(tiles);
+        Factory factory2 = new Factory(tiles, tableCenter);
         assertEquals("Four blue tiles should be taken.", 4, factory2.take(0).size());
         assertEquals("No tiles left.", 0, factory2.sizeOfFactory());
 
         tiles = new ArrayList<>(Arrays.asList(Tile.YELLOW, Tile.YELLOW, Tile.YELLOW, Tile.GREEN));
-        Factory factory3 = new Factory(tiles);
+        Factory factory3 = new Factory(tiles, tableCenter);
         assertEquals("Only one green tile should be taken.", 1, factory3.take(3).size());
         assertEquals("Three should be left.", 3, factory3.sizeOfFactory());
         assertEquals("Three yellow tiles should be taken.", 3, factory3.take(0).size());
