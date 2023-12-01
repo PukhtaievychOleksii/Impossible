@@ -50,47 +50,93 @@ public class BoardTest {
 
     @Test
     public void testEndGame() {
-        Points initialPoints = new Points(board.points.getValue());
-        /*board.endGame();
-        assertEquals("", 0, board.points.getValue());
-        ArrayList<Tile> tiles = new ArrayList<>(Arrays.asList(Tile.RED));
-        board.put(0, tiles);
-        assertEquals("", 0, board.points.getValue());
+
+        // если 0 wallLine полностью собранна (+2б из FinalPointsCalculation)
+//        ArrayList<Tile> tiles = new ArrayList<>();
+//        tiles = new ArrayList<>(Arrays.asList(Tile.BLUE));
+//        board.put(0, tiles);
+//        board.finishRound();
+//
+//        tiles = new ArrayList<>(Arrays.asList(Tile.YELLOW));
+//        board.put(0, tiles);
+//        board.finishRound();
+//
+//        tiles = new ArrayList<>(Arrays.asList(Tile.RED));
+//        board.put(0, tiles);
+//        board.finishRound();
+//
+//        tiles = new ArrayList<>(Arrays.asList(Tile.BLACK));
+//        board.put(0, tiles);
+//        board.finishRound();
+//
+//        tiles = new ArrayList<>(Arrays.asList(Tile.GREEN));
+//        board.put(0, tiles);
+//        board.finishRound();
+//
+//        board.endGame();
+//        assertEquals("", 17, board.points.getValue());
+
+        // если собранны все камни синего цвета (+10б из FinalPointsCalculation)
+        ArrayList<Tile> blueTiles;
+
+        blueTiles = new ArrayList<>();
+        blueTiles.add(Tile.BLUE);
+        blueTiles.add(Tile.BLUE);
+        board.put(1, blueTiles);
         board.finishRound();
+
+        blueTiles = new ArrayList<>();
+        blueTiles.add(Tile.BLUE);
+        blueTiles.add(Tile.BLUE);
+        blueTiles.add(Tile.BLUE);
+        board.put(2, blueTiles);
+        board.finishRound();
+
+        blueTiles = new ArrayList<>();
+        blueTiles.add(Tile.BLUE);
+        blueTiles.add(Tile.BLUE);
+        blueTiles.add(Tile.BLUE);
+        blueTiles.add(Tile.BLUE);
+        board.put(3, blueTiles);
+        board.finishRound();
+
+        blueTiles = new ArrayList<>();
+        blueTiles.add(Tile.BLUE);
+        blueTiles.add(Tile.BLUE);
+        blueTiles.add(Tile.BLUE);
+        blueTiles.add(Tile.BLUE);
+        blueTiles.add(Tile.BLUE);
+        board.put(4, blueTiles);
+        board.finishRound();
+
+        blueTiles = new ArrayList<>(Arrays.asList(Tile.BLUE));
+        board.put(0, blueTiles);
+        board.finishRound();
+
+        blueTiles = new ArrayList<>(Arrays.asList(Tile.YELLOW));
+        board.put(0, blueTiles);
+        board.finishRound();
+
+        blueTiles = new ArrayList<>(Arrays.asList(Tile.RED));
+        board.put(0, blueTiles);
+        board.finishRound();
+
+        blueTiles = new ArrayList<>(Arrays.asList(Tile.BLACK));
+        board.put(0, blueTiles);
+        board.finishRound();
+
+        blueTiles = new ArrayList<>(Arrays.asList(Tile.GREEN));
+        board.put(0, blueTiles);
+        board.finishRound();
+
+
         board.endGame();
-        assertEquals("", 1, board.points.getValue());
-        System.out.println(board.points.getValue());*/
-
-        // не фунгуе почет бодов
-        ArrayList<Tile> tiles = new ArrayList<>();
-        tiles = new ArrayList<>(Arrays.asList(Tile.BLUE));
-        board.put(0, tiles);
-        board.finishRound();
-        System.out.println(board.points.getValue());
-        tiles = new ArrayList<>(Arrays.asList(Tile.YELLOW));
-        board.put(0, tiles);
-        board.finishRound();
-        System.out.println(board.points.getValue());
-        tiles = new ArrayList<>(Arrays.asList(Tile.RED));
-        board.put(0, tiles);
-        board.finishRound();
-        System.out.println(board.points.getValue());
-        tiles = new ArrayList<>(Arrays.asList(Tile.BLACK));
-        board.put(0, tiles);
-        board.finishRound();
-        System.out.println(board.points.getValue());
-        tiles = new ArrayList<>(Arrays.asList(Tile.GREEN));
-        board.put(0, tiles);
-        board.finishRound();
-        board.endGame();
-        System.out.println(board.points.getValue());
-        assertEquals("", 17, board.points.getValue());
-
-
+        assertEquals("", 33, board.points.getValue());
 
     }
     @Test
     public void testBoardIntegrationWithPatterLine(){
+
 
     }
 }

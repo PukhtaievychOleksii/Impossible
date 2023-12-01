@@ -11,14 +11,11 @@ public class Factory extends TyleSource{
         this.bag = bag;
         this.tableCenter = tableCenter;
     }
-
-
-    public Factory(ArrayList<Tile> tiles, TableCenter tableCenter){
+    
+    public Factory(ArrayList<Tile> tiles, TableCenter tableCenter) {
         sourceTiles = tiles;
         this.tableCenter = tableCenter;
     }
-
-
     @Override
     public void startNewRound(){
         if (bag.sizeOfBag() >= 4) {
