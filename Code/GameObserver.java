@@ -12,7 +12,6 @@ public class GameObserver implements ObserverInterface {
         this.watchers = new ArrayList<>();
     }
 
-
     public void notifyEverybody(String state) {
         for (WatcherInterface watcher : watchers) {
             watcher.notify(state);

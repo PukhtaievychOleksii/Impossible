@@ -102,6 +102,7 @@ public class FinalPointsCalculationComposite implements Component {
             countColor.put(FirstLetterColor, countColor.getOrDefault(FirstLetterColor, 0) + 1);
         }
         return colorPoints;
+
     }
 
 }

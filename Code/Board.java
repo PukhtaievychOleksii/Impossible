@@ -96,8 +96,6 @@ public class Board {
             finishRoundSum += patternLines.get(i).finishRound().getValue();
         }
         points = new Points(points.getValue() + finishRoundSum - floor.finishRound().getValue());
-
-
         if (gameResult.gameFinished(wallToArrayList()) == GAME_FINISHED ) {
             return GAME_FINISHED;
         }
