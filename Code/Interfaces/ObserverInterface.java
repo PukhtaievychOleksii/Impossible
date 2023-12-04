@@ -1,6 +1,6 @@
 package Code.Interfaces;
 
 public interface ObserverInterface {
-    public void registerObserver(WatcherInterface watcher);
-    public void canselObserver(WatcherInterface watcher);
+    public void registerObserver(ObserverInterface observer);
+    public void canselObserver(ObserverInterface observer);
 }

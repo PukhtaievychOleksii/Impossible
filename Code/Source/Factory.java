@@ -11,10 +11,21 @@ public class Factory extends TyleSource{
         this.bag = bag;
         this.tableCenter = tableCenter;
     }
+<<<<<<< HEAD:Code/Source/Factory.java
 
     public Factory(ArrayList<Tile> tiles, TableCenter tableCenter) {
+=======
+<<<<<<< HEAD
+
+    public Factory(ArrayList<Tile> tiles, TableCenter tableCenter){
+>>>>>>> parent of d6a0ebd (GameIntegrationTestUpdate):Code/Factory.java
         sourceTiles = tiles;
         this.tableCenter = tableCenter;
+=======
+    public Factory(ArrayList<Tile> tiles){
+        sourceTiles = tiles;
+        this.tableCenter = new TableCenter();
+>>>>>>> 7dea158b8236c85e4478046f073de6708cfcaaa7
     }
     @Override
     public void startNewRound(){

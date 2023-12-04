@@ -14,8 +14,13 @@ public class Game implements GameInterface {
     private static final String[] defaultPlayerNames = {"Player 1", "Player 2", "Player 3", "Player 4"};
     private static final int[] amountOfFactories = {-1, -1, 5, 7, 9};
 
+<<<<<<< HEAD:Code/Source/Game.java
     public Game() {
         this(4, defaultPlayerNames);
+=======
+    public Game(int numOfplayers) {
+        this(numOfplayers, defaultNames);
+>>>>>>> parent of d6a0ebd (GameIntegrationTestUpdate):Code/Game.java
     }
 
     public Game(int numberOfPlayers, String[] playerNames) {
@@ -78,7 +83,7 @@ public class Game implements GameInterface {
         if(isGameOver) endGame();
     }
 
-    public void endGame() {
+    private void endGame() {
         gameObserver.notifyEverybody("Game is finished!");
 
         String winnerName = "";

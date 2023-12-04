@@ -1,32 +1,34 @@
 package Code.Source;
 
 import Code.Interfaces.ObserverInterface;
-import Code.Interfaces.WatcherInterface;
 
 import java.util.ArrayList;
 
 public class GameObserver implements ObserverInterface {
+<<<<<<< HEAD:Code/Source/GameObserver.java
     private ArrayList<WatcherInterface> watchers;
 
+=======
+
+    private ArrayList<ObserverInterface> observers;
+>>>>>>> parent of d6a0ebd (GameIntegrationTestUpdate):Code/GameObserver.java
     public GameObserver() {
-        this.watchers = new ArrayList<>();
+        this.observers = new ArrayList<>();
     }
 
     public void notifyEverybody(String state) {
-        for (WatcherInterface watcher : watchers) {
-            watcher.notify(state);
-            System.out.println(state);
+        for (ObserverInterface observer : observers) {
+             System.out.println(state);
         }
     }
 
     @Override
-    public void registerObserver(WatcherInterface watcher) {
-        watchers.add(watcher);
+    public void registerObserver(ObserverInterface observer) {
+        observers.add(observer);
     }
 
     @Override
-    public void canselObserver(WatcherInterface watcher) {
-        watchers.remove(watcher);
+    public void canselObserver(ObserverInterface observer) {
+        observers.remove(observer);
     }
-
 }
