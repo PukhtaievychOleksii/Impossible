@@ -12,9 +12,12 @@ public class Factory extends TyleSource{
         this.tableCenter = tableCenter;
     }
 <<<<<<< HEAD:Code/Source/Factory.java
+<<<<<<< HEAD:Code/Source/Factory.java
 
     public Factory(ArrayList<Tile> tiles, TableCenter tableCenter) {
 =======
+=======
+>>>>>>> parent of d6a0ebd (GameIntegrationTestUpdate):Code/Factory.java
 <<<<<<< HEAD
 
     public Factory(ArrayList<Tile> tiles, TableCenter tableCenter){

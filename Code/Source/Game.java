@@ -15,8 +15,13 @@ public class Game implements GameInterface {
     private static final int[] amountOfFactories = {-1, -1, 5, 7, 9};
 
 <<<<<<< HEAD:Code/Source/Game.java
+<<<<<<< HEAD:Code/Source/Game.java
     public Game() {
         this(4, defaultPlayerNames);
+=======
+    public Game(int numOfplayers) {
+        this(numOfplayers, defaultNames);
+>>>>>>> parent of d6a0ebd (GameIntegrationTestUpdate):Code/Game.java
 =======
     public Game(int numOfplayers) {
         this(numOfplayers, defaultNames);
@@ -80,9 +85,12 @@ public class Game implements GameInterface {
             if(roundResult.equals(FinishRoundResult.GAME_FINISHED)) isGameOver = true;
         }
 
+<<<<<<< HEAD:Code/Source/Game.java
         if(isGameOver) endGame();
     }
 
+=======
+>>>>>>> parent of d6a0ebd (GameIntegrationTestUpdate):Code/Game.java
     private void endGame() {
         gameObserver.notifyEverybody("Game is finished!");
 
