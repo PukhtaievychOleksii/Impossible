@@ -19,6 +19,7 @@ public class FinalPointsCalculationComposite implements Component {
     }
     @Override
     public Points getPoints(ArrayList<ArrayList<Optional<Tile>>> wall) {
+
         int totalPoints = 0;
 
         totalPoints += calculateColorPoints(wall);
@@ -39,6 +40,7 @@ public class FinalPointsCalculationComposite implements Component {
     }
 
     public boolean isRowComplete(ArrayList<Optional<Tile>> row) {
+        
         int counter = 0;
         for (Optional<Tile> tile : row) {
             if (!tile.isPresent()) return false;
