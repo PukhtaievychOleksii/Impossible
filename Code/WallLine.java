@@ -59,6 +59,7 @@ public class WallLine {
         presentTiles.set(index, Optional.of(tile));
         //count
         int horSeq = 1;
+
         //go right wall
         int walker = index + 1;
         while(walker < presentTiles.size()){
@@ -81,7 +82,6 @@ public class WallLine {
         vertSeq += goUpWall(index, upWall);
         vertSeq += goDownWall(index, downWall);
 
-
         if(horSeq * vertSeq == horSeq || horSeq * vertSeq == vertSeq) points = Math.max(horSeq, vertSeq);
         else points = horSeq + vertSeq;
 
@@ -97,8 +97,6 @@ public class WallLine {
         if(downWall.isPresent() && downWall.get().getTiles().get(index).isPresent()) return 1 + goDownWall(index, downWall.get().getDownWall());
         return 0;
     }
-
-
 
     public String state(){
         String toReturn = "";
