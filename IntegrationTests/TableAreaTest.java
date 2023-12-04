@@ -33,6 +33,8 @@ public class TableAreaTest {
         assertEquals("Number of taken tiles should be 2",2, taken.size() );
     }
 
+
+
     @Test
     public void RoundEndTest(){
         ArrayList<ArrayList<Tile>> factoriesTile = new ArrayList<>();
