@@ -6,8 +6,8 @@ import Code.Interfaces.WatcherInterface;
 import java.util.ArrayList;
 
 public class GameObserver implements ObserverInterface {
-
     private ArrayList<WatcherInterface> watchers;
+
     public GameObserver() {
         this.watchers = new ArrayList<>();
     }

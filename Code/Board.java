@@ -64,7 +64,7 @@ public class Board {
     }
 
     private void fillTypesSequenceWall() {
-        
+
         for (int i = 0; i < 5; i++) {
             tileTypesSequenceWall.add(i, new ArrayList<Tile>());
             for (int j = 0; j < 5; j++) {
