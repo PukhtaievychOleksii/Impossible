@@ -1,4 +1,4 @@
-package Code;
+package Code.Source;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -97,12 +97,6 @@ public class WallLine {
         if(downWall.isPresent() && downWall.get().getTiles().get(index).isPresent()) return 1 + goDownWall(index, downWall.get().getDownWall());
         return 0;
     }
-
-
-    private WallLine fixWallLine(){
-        return this;
-    }
-
 
 
 

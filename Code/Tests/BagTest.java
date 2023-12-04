@@ -1,7 +1,7 @@
 package Code.Tests;
 
-import Code.Bag;
-import Code.Tile;
+import Code.Source.Bag;
+import Code.Source.Tile;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Stack;
@@ -12,46 +12,45 @@ public class BagTest {
 
     @Test
     public void testTake() {
+        //create Bag
         Bag bag = new Bag();
 
-        int count = 5;
-        int n = bag.sizeOfBag();
-        ArrayList<Tile> takenTiles = bag.take(count);
+        int size = bag.sizeOfBag();
+        int workingSize = 5;
+        int takeAmount = 3;
 
-        assertEquals(count, takenTiles.size(), "Incorrect number of tiles taken");
-        assertEquals(n-count, bag.sizeOfBag(), "Incorrect size of bag.");
+        ArrayList<Tile> takenTiles = bag.take(workingSize);
 
-        Stack<Tile> tiles = new Stack<>();
-        tiles.push(Tile.RED);
-        tiles.push(Tile.YELLOW);
-        tiles.push(Tile.BLUE);
-        tiles.push(Tile.GREEN);
-        tiles.push(Tile.GREEN);
-        tiles.push(Tile.BLACK);
-        Bag bag1 = new Bag(tiles);
+        assertEquals(workingSize, takenTiles.size(), "Wrong number of tiles taken");
+        assertEquals(size-workingSize, bag.sizeOfBag(), "Wrong bag size");
 
-        int takeCount = 2;
-        ArrayList<Tile> takenFromBag1 = bag1.take(takeCount);
-        assertEquals(takeCount, takenFromBag1.size(), "Incorrect number of tiles from Bag1");
+        ArrayList<Tile> tiles = new ArrayList<>();
+        tiles.add(Tile.GREEN);
+        tiles.add(Tile.GREEN);
+        tiles.add(Tile.BLACK);
+        bag = new Bag(tiles);
 
-        assertEquals(Tile.GREEN, takenFromBag1.get(1), "Incorrect tile taken from Bag1" );
-        assertEquals(Tile.BLACK, takenFromBag1.get(0), "Incorrect tile taken from Bag1" );
+        takenTiles = bag.take(takeAmount);
+        assertEquals(takeAmount, takenTiles.size(), "Incorrect number of tiles from Bag");
 
-        tiles = new Stack<>();
-        tiles.push(Tile.BLUE);
-        tiles.push(Tile.YELLOW);
-        tiles.push(Tile.RED);
-        tiles.push(Tile.BLACK);
-        tiles.push(Tile.GREEN);
-        Bag bag2 = new Bag(tiles);
+        assertEquals(Tile.BLACK, takenTiles.get(0), "Incorrect tile taken from Bag" );
+        assertEquals(Tile.GREEN, takenTiles.get(1), "Incorrect tile taken from Bag" );
+        assertEquals(Tile.GREEN, takenTiles.get(2), "Incorrect tile taken from Bag" );
 
-        int takeCount2 = 3;
-        ArrayList<Tile> takenFromBag2 = bag2.take(takeCount2);
-        assertEquals(takeCount2, takenFromBag2.size(), "Incorrect number of tiles from Bag1");
 
-        assertEquals(Tile.GREEN, takenFromBag2.get(0), "Incorrect tile taken from Bag1" );
-        assertEquals(Tile.BLACK, takenFromBag2.get(1), "Incorrect tile taken from Bag1" );
-        assertEquals(Tile.RED, takenFromBag2.get(2), "Incorrect tile taken from Bag1" );
+        tiles = new ArrayList<>();
+        tiles.add(Tile.YELLOW);
+        tiles.add(Tile.RED);
+        tiles.add(Tile.YELLOW);
+        tiles.add(Tile.RED);
+        bag = new Bag(tiles);
+
+        takenTiles = bag.take(takeAmount);
+        assertEquals(takeAmount, takenTiles.size(), "Incorrect number of tiles from Bag");
+
+        assertEquals(Tile.RED, takenTiles.get(0), "Incorrect tile taken from Bag" );
+        assertEquals(Tile.YELLOW, takenTiles.get(1), "Incorrect tile taken from Bag" );
+        assertEquals(Tile.RED, takenTiles.get(2), "Incorrect tile taken from Bag" );
 
 
     }

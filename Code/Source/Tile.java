@@ -1,4 +1,4 @@
-package Code;
+package Code.Source;
 
 import java.util.Random;
 

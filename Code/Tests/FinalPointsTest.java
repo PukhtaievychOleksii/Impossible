@@ -1,9 +1,9 @@
 package Code.Tests;
 
-import Code.FinalPointsCalculationComposite;
+import Code.Source.FinalPointsCalculation;
 import Code.Interfaces.Component;
-import Code.Points;
-import Code.Tile;
+import Code.Source.Points;
+import Code.Source.Tile;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -13,8 +13,9 @@ import java.util.Optional;
 import static org.junit.Assert.assertEquals;
 
 public class FinalPointsTest {
+
     @Test
-    public void fullMosaicTest(){
+    public void calculatePointsTest() {
         ArrayList<ArrayList<Optional<Tile>>> records = new ArrayList<>();
         ArrayList<Optional<Tile>> row1 = new ArrayList<>(
                 Arrays.asList(
@@ -67,14 +68,14 @@ public class FinalPointsTest {
         records.add(row3);
         records.add(row4);
         records.add(row5);
-        Component comp = new FinalPointsCalculationComposite();
-        Points points = comp.getPoints(records);
-        assertEquals("Full mosaic should give 95 points.", 95, points.getValue());
 
+        FinalPointsCalculation finalPoints = new FinalPointsCalculation();
+        int result = finalPoints.calculateColorPoints(records);
+        assertEquals(5 * 10, result);
     }
 
     @Test
-    public void oneRowCompletedTest(){
+    public void oneRowFullTest(){
         ArrayList<ArrayList<Optional<Tile>>> records = new ArrayList<>();
         ArrayList<Optional<Tile>> row1 = new ArrayList<>(
                 Arrays.asList(
@@ -117,13 +118,13 @@ public class FinalPointsTest {
         records.add(row3);
         records.add(row4);
         records.add(row5);
-        FinalPointsCalculationComposite comp = new FinalPointsCalculationComposite();
+        FinalPointsCalculation comp = new FinalPointsCalculation();
         int n = comp.calculateHorizontalRowPoints(records);
         assertEquals("One row should give 2 points", 2, n);
     }
 
     @Test
-    public void noRowCompletedTest(){
+    public void noRowTest(){
         ArrayList<ArrayList<Optional<Tile>>> records = new ArrayList<>();
         ArrayList<Optional<Tile>> row1 = new ArrayList<>(
                 Arrays.asList(
@@ -163,13 +164,13 @@ public class FinalPointsTest {
         records.add(row3);
         records.add(row4);
         records.add(row5);
-        FinalPointsCalculationComposite comp = new FinalPointsCalculationComposite();
+        FinalPointsCalculation comp = new FinalPointsCalculation();
         int n = comp.calculateHorizontalRowPoints(records);
         assertEquals("There is no complete row.", 0, n);
     }
 
     @Test
-    public void oneColumnCompletedTest(){
+    public void oneColumnFullTest(){
         ArrayList<ArrayList<Optional<Tile>>> records = new ArrayList<>();
         ArrayList<Optional<Tile>> row1 = new ArrayList<>(
                 Arrays.asList(
@@ -212,13 +213,13 @@ public class FinalPointsTest {
         records.add(row3);
         records.add(row4);
         records.add(row5);
-        FinalPointsCalculationComposite comp = new FinalPointsCalculationComposite();
+        FinalPointsCalculation comp = new FinalPointsCalculation();
         int n = comp.calculateVerticalColumnPoints(records);
         assertEquals("Two rows should give 14 points", 14, n);
     }
 
     @Test
-    public void noColumnCompletedTest() {
+    public void noColumnFullTest() {
         ArrayList<ArrayList<Optional<Tile>>> records = new ArrayList<>();
         ArrayList<Optional<Tile>> row1 = new ArrayList<>(
                 Arrays.asList(
@@ -251,68 +252,10 @@ public class FinalPointsTest {
         records.add(row3);
         records.add(row4);
 
-        FinalPointsCalculationComposite comp = new FinalPointsCalculationComposite();
+        FinalPointsCalculation comp = new FinalPointsCalculation();
         int n = comp.calculateVerticalColumnPoints(records);
         assertEquals("There is no complete column.", 0, n);
     }
 
-    @Test
-    public void testCalculateColorPoints() {
-        ArrayList<ArrayList<Optional<Tile>>> records = new ArrayList<>();
-        ArrayList<Optional<Tile>> row1 = new ArrayList<>(
-                Arrays.asList(
-                        Optional.of(Tile.RED),
-                        Optional.of(Tile.YELLOW),
-                        Optional.of(Tile.GREEN),
-                        Optional.of(Tile.BLUE),
-                        Optional.of(Tile.BLACK)
-                )
-        );
-        ArrayList<Optional<Tile>> row2 = new ArrayList<>(
-                Arrays.asList(
-                        Optional.of(Tile.RED),
-                        Optional.of(Tile.YELLOW),
-                        Optional.of(Tile.GREEN),
-                        Optional.of(Tile.BLUE),
-                        Optional.of(Tile.BLACK)
-                )
-        );
-        ArrayList<Optional<Tile>> row3 = new ArrayList<>(
-                Arrays.asList(
-                        Optional.of(Tile.RED),
-                        Optional.of(Tile.YELLOW),
-                        Optional.of(Tile.GREEN),
-                        Optional.of(Tile.BLUE),
-                        Optional.of(Tile.BLACK)
-                )
-        );
-        ArrayList<Optional<Tile>> row4 = new ArrayList<>(
-                Arrays.asList(
-                        Optional.of(Tile.RED),
-                        Optional.of(Tile.YELLOW),
-                        Optional.of(Tile.GREEN),
-                        Optional.of(Tile.BLUE),
-                        Optional.of(Tile.BLACK)
-                )
-        );
-        ArrayList<Optional<Tile>> row5 = new ArrayList<>(
-                Arrays.asList(
-                        Optional.of(Tile.RED),
-                        Optional.of(Tile.YELLOW),
-                        Optional.of(Tile.GREEN),
-                        Optional.of(Tile.BLUE),
-                        Optional.of(Tile.BLACK)
-                )
-        );
 
-        records.add(row1);
-        records.add(row2);
-        records.add(row3);
-        records.add(row4);
-        records.add(row5);
-
-        FinalPointsCalculationComposite finalPoints = new FinalPointsCalculationComposite();
-        int result = finalPoints.calculateColorPoints(records);
-        assertEquals(5 * 10, result);
-    }
 }

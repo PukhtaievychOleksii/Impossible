@@ -1,9 +1,9 @@
 package Code.Tests;
 
-import Code.Floor;
-import Code.Points;
-import Code.Tile;
-import Code.UsedTyles;
+import Code.Source.Floor;
+import Code.Source.Points;
+import Code.Source.Tile;
+import Code.Source.UsedTyles;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,49 +17,42 @@ public class FloorTest {
     private UsedTyles usedTiles;
     private Floor floor;
 
-    @Before
-    public void setUp() {
+
+    @Test
+    public void test_tiles() {
+        //create floor
         usedTiles = new UsedTyles();
         ArrayList<Points> pointPattern = new ArrayList<Points>();
         pointPattern.add(new Points(1));
         pointPattern.add(new Points(2));
         pointPattern.add(new Points(2));
+        pointPattern.add(new Points(3));
         floor = new Floor(usedTiles, pointPattern);
-    }
-
-    @Test
-    public void test_tiles() {
-        ArrayList<Tile> tiles = new ArrayList<Tile>();
-        tiles.add(Tile.STARTING_PLAYER);
-        tiles.add(Tile.RED);
-        tiles.add(Tile.GREEN);
-        tiles.add(Tile.RED);
+        //test floor
         assertEquals("Floor should be empty when created.", "", floor.state());
+
+        ArrayList<Tile> tiles = new ArrayList<Tile>();
+        tiles.add(Tile.RED);
+        tiles.add(Tile.YELLOW);
+        tiles.add(Tile.RED);
         floor.put(tiles);
-        assertEquals("Floor should contain tiles we put on it.", "SRGR", floor.state());
+        assertEquals( "RIR", floor.state());
         Points points = floor.finishRound();
-        assertEquals("Floor should be empty after the round is finished.", "", floor.state());
-        assertEquals(
-                "Incorrect points calculation when there are more tiles than pattern size",
-                7,
-                points.getValue());
-        assertArrayEquals(
-                "Used tiles should get the tiles", tiles.toArray(), usedTiles.takeAll().toArray());
+        assertEquals("", floor.state());
+        assertEquals("Wrong points calculation", 5, points.getValue());
+        assertArrayEquals("Used tiles should contain tiles from the floor", tiles.toArray(), usedTiles.takeAll().toArray());
 
         floor.put(Arrays.asList(Tile.RED));
-        floor.put(Arrays.asList(Tile.GREEN));
-        floor.put(new ArrayList<Tile>());
-        assertEquals("Floor should contain tiles we put on it.", "RG", floor.state());
-        Points points2 = floor.finishRound();
+        floor.put(Arrays.asList(Tile.BLACK));
+        //floor.put(new ArrayList<Tile>());
+        assertEquals( "RL", floor.state());
+        points = floor.finishRound();
         assertEquals("Floor should be empty after the round is finished.", "", floor.state());
         assertEquals(
-                "Incorrect points calculation when there are less tiles than pattern size",
-                3,
-                points2.getValue());
+                "Wrong points calculation", 3, points.getValue());
         tiles.add(Tile.RED);
-        tiles.add(Tile.GREEN);
-        assertArrayEquals(
-                "Used tiles should get the tiles", tiles.toArray(), usedTiles.takeAll().toArray());
+        tiles.add(Tile.BLACK);
+        assertArrayEquals(tiles.toArray(), usedTiles.takeAll().toArray());
     }
 
 

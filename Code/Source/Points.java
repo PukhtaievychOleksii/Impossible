@@ -1,4 +1,4 @@
-package Code;
+package Code.Source;
 
 public final class Points {
     public static Points sum(final Iterable<Points> pts) {

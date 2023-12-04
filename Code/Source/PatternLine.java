@@ -1,4 +1,4 @@
-package Code;
+package Code.Source;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,35 +20,13 @@ public class PatternLine {
         resetLine();
     }
 
-    public ArrayList<Tile> getPresentTyles(){
-        return presentTiles;
-    }
-
-    public void resetLine(){
-        for(Tile tile: presentTiles){
-            usedTyles.give(new ArrayList<>(Arrays.asList(tile)));
-        }
-        presentTiles = new ArrayList<>();
-    }
-
-    public boolean isLineFull(){
-        return presentTiles.size() == capacity;
-    }
-
-    private boolean areTilesOfTheSameType(ArrayList<Tile> tiles){
-        Tile startTile = tiles.get(0);
-        for(Tile tile : tiles){
-            if(tile != startTile) return false;
-        }
-        return true;
-    }
-
     public void put(ArrayList<Tile> tiles){
         Tile instance = tiles.get(0);
-        if(!areTilesOfTheSameType(tiles) || !wallLine.canPutTile(instance)) return;
-        for(Tile tile : tiles){
-            if(presentTiles.size() < capacity) presentTiles.add(tile);
-            else floor.put(Collections.singleton(tile));
+        if(wallLine.canPutTile(instance) && areTilesOfTheSameType(tiles)) {
+            for (Tile tile : tiles) {
+                if (presentTiles.size() < capacity) presentTiles.add(tile);
+                else floor.put(Collections.singleton(tile));
+            }
         }
     }
 
@@ -76,8 +54,27 @@ public class PatternLine {
         return presentTiles.isEmpty();
     }
 
-    public PatternLine fixPatterLine(){
-        return this;
+    public ArrayList<Tile> getPresentTyles(){
+        return presentTiles;
+    }
+
+    public void resetLine(){
+        for(Tile tile: presentTiles){
+            usedTyles.give(new ArrayList<>(Arrays.asList(tile)));
+        }
+        presentTiles = new ArrayList<>();
+    }
+
+    public boolean isLineFull(){
+        return presentTiles.size() == capacity;
+    }
+
+    private boolean areTilesOfTheSameType(ArrayList<Tile> tiles){
+        Tile startTile = tiles.get(0);
+        for(Tile tile : tiles){
+            if(tile != startTile) return false;
+        }
+        return true;
     }
 
 

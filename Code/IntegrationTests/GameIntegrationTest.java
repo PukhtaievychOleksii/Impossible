@@ -1,7 +1,7 @@
-package IntegrationTests;
+package Code.IntegrationTests;
 
-import Code.*;
-import IntegrationTests.HelpClasses.TestUser;
+import Code.IntegrationTests.HelpClasses.TestUser;
+import Code.Source.*;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -43,18 +43,19 @@ public class GameIntegrationTest {
         boolean isTakeCorrect = true;
         //correct take
         for(int i = 0; i < boards.size(); i++){
-            int correct_destination = 0;
-            isTakeCorrect = game.take(i,i,0, correct_destination);
+            int correct_destination = 4;
+            isTakeCorrect = game.take(i,i + 1,0, correct_destination);
             assertTrue("Take should be but was not accomplished", isTakeCorrect);
             Board board = boards.get(i);
             assertFalse("Tiles were not put on the Board with right input",board.areLinesEmpty());
         }
 
-        game.startNewRound();
+        game = new Game();
+        boards = game.getBoards();
         //incorrect take
         for(int i = 0; i < boards.size(); i++){
             final int incorrect_destination = 1000;
-            isTakeCorrect = game.take(i,1,0, incorrect_destination);
+            isTakeCorrect = game.take(i,i,0, incorrect_destination);
             assertTrue("Take should be but was not accomplished",isTakeCorrect);
             Board board = boards.get(i);
             assertTrue("Incorrect take added to Lines",board.areLinesEmpty());

@@ -1,7 +1,7 @@
 package Code.Interfaces;
 
-import Code.Points;
-import Code.Tile;
+import Code.Source.Points;
+import Code.Source.Tile;
 
 import java.util.ArrayList;
 import java.util.Optional;

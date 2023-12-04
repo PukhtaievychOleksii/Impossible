@@ -1,4 +1,4 @@
-package Code;
+package Code.Source;
 
 public enum FinishRoundResult {
     NORMAL,

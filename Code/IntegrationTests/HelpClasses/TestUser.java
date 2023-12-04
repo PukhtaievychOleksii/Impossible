@@ -1,6 +1,5 @@
-package IntegrationTests.HelpClasses;
+package Code.IntegrationTests.HelpClasses;
 
-import Code.Interfaces.ObserverInterface;
 import Code.Interfaces.WatcherInterface;
 
 public class TestUser implements WatcherInterface {

@@ -1,9 +1,10 @@
-package Code;
+package Code.Source;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static Code.FinishRoundResult.*;
+import static Code.Source.FinishRoundResult.*;
 
 public class Board {
 
@@ -45,6 +46,8 @@ public class Board {
     public Floor getFloor(){
         return floor;
     }
+
+    public ArrayList<WallLine> getWallLines(){return wallLines;}
     private void setWallNeighbours(){
         wallLines.get(0).setDownWall(wallLines.get(1));
         for(int i = 1; i < 4; i++){
@@ -107,7 +110,7 @@ public class Board {
 
 
     public void endGame() {
-        FinalPointsCalculationComposite bonus = new FinalPointsCalculationComposite();
+        FinalPointsCalculation bonus = new FinalPointsCalculation();
         points = new Points(points.getValue() + bonus.getPoints(wallToArrayList()).getValue());
     }
 

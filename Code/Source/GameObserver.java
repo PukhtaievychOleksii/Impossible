@@ -1,4 +1,4 @@
-package Code;
+package Code.Source;
 
 import Code.Interfaces.ObserverInterface;
 import Code.Interfaces.WatcherInterface;

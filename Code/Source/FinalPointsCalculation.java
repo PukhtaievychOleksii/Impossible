@@ -1,14 +1,14 @@
-package Code;
+package Code.Source;
 import Code.Interfaces.Component;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class FinalPointsCalculationComposite implements Component {
+public class FinalPointsCalculation implements Component {
     private Map<String, Integer> countColor;
 
-    public FinalPointsCalculationComposite(){
+    public FinalPointsCalculation(){
         this.countColor = new HashMap<>();
         countColor.put("Optional[R]", 0);
         countColor.put("Optional[G]", 0);

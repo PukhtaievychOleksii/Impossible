@@ -1,4 +1,4 @@
-package Code;
+package Code.Source;
 
 import java.util.ArrayList;
 
@@ -39,5 +39,9 @@ public class TyleSource {
 
     public ArrayList<Tile> getSourceTiles() {
         return sourceTiles;
+    }
+
+    public int getSize(){
+        return sourceTiles.size();
     }
 }
