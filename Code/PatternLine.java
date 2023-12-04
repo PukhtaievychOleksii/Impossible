@@ -76,5 +76,9 @@ public class PatternLine {
         return presentTiles.isEmpty();
     }
 
+    public PatternLine fixPatterLine(){
+        return this;
+    }
+
 
 }

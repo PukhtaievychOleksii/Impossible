@@ -98,6 +98,10 @@ public class WallLine {
         return 0;
     }
 
+    private WallLine fixWallLine(){
+        return this;
+    }
+
 
 
     public String state(){
